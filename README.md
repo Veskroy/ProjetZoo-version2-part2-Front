@@ -1,8 +1,22 @@
-# React + Vite
+# WildWonderHub (SAE 3.01)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+WildWonderHub est une application de gestion des visiteurs et des animaux du Zoo de la Palmyre, utilisant principalement le framework Symfony (version 6.3).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Il s'agit ici de la partie FRONT du projet.
+
+Le sujet sur lequel s'appuyer pour la réalisation de cette SAE se trouve [ici](http://cutrona/but/s4/sae4-real-01/).
+
+---
+
+## Table des matières
+
+(À remplir)
+
+## Auteurs du projet
+
+- Logan Jacotin
+- Romain Leroy
+- Vincent Kpatinde
+- Clément Perrot
