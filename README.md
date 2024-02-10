@@ -21,6 +21,8 @@ Le sujet sur lequel s'appuyer pour la réalisation de cette SAE se trouve [ici](
   * [Gestion des branches et commits](#gestion-des-branches-et-commits)
 <!-- TOC -->
 
+---
+
 ### Auteurs du projet
 
 - Logan Jacotin
@@ -28,12 +30,16 @@ Le sujet sur lequel s'appuyer pour la réalisation de cette SAE se trouve [ici](
 - Vincent Kpatinde
 - Clément Perrot
 
+---
+
 ### Outils utilisés
 
 - [React](https://fr.legacy.reactjs.org/docs/getting-started.html)
 - [Vite](https://vitejs.dev/guide/)
 
 <i>(... à compléter)</i>
+
+---
 
 ### Guide d'installation
 
@@ -51,6 +57,8 @@ npm install
 ```shell
 npm run dev
 ```
+
+---
 
 ### Gestion des branches et commits
 
