@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import Header from 'src/components/page/Header';
-import Footer from 'src/components/page/Footer';
+import Header from '/src/components/page/Header.jsx';
+import Footer from '/src/components/page/Footer.jsx';
 
 // props => {title}
 export default function BasePage({title}) {
@@ -14,9 +14,11 @@ export default function BasePage({title}) {
             <link rel="stylesheet" href="" type="text/css"></link>
         </head>
         <body>
-        <!-- Navbar -->
+            <Header>
+            </Header>
 
-        <!-- Footer -->
+            <Footer>
+            </Footer>
         </body>
         </html>
     )
