@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import testGetLoggedUser from "./services/api/WildWonderHub"
+import BasePage from "./components/page/BasePage";
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
 
   return (
     <>
-      <h1>App</h1>
+      <BasePage title={"Page de WWH"}>
+      </BasePage>
     </>
   )
 }
