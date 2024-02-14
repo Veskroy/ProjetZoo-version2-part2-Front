@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import Header from 'src/components/page/Header';
+import Footer from 'src/components/page/Footer';
 
 // props => {title}
 export default function BasePage({title}) {
