@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      <BasePage title={"Page de WWH"}>
+      <BasePage>
       </BasePage>
     </>
   )
