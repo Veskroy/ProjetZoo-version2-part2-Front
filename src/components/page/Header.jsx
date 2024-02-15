@@ -5,7 +5,10 @@ export default function Header() {
     return (
         <header className="header">
             <div className="main-infos">
-                Zoo de la Palmyre
+                <a href="">
+                    <img src="/public/assets/images/logos/LogoSAE_Zoo.png" className="logo" alt="logo"/>
+                    Zoo de la Palmyre
+                </a>
             </div>
             <nav className="ul-links">
                 <div>
