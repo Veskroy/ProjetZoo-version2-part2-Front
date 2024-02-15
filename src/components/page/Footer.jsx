@@ -7,7 +7,10 @@ export default function Footer() {
         <footer className="full-width">
             <div className="container-links-news">
                 <div className="container-links">
-                    liens divers
+                    <a href="">Contact</a>
+                    <a href="">Politique de confidentialité</a>
+                    <a href="">Forum</a>
+                    <a href="">À propos</a>
                 </div>
 
                 <div className="newsletter">
