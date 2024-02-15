@@ -9,7 +9,9 @@ export default function Header() {
             </div>
             <nav className="ul-links">
                 <div>
-                liens des boutons
+                    <a href="" className="menu-link">Accueil</a>
+                    <a href="" className="menu-link">Liste des animaux</a>
+                    <a href="" className="menu-link">Evènements</a>
                 </div>
             </nav>
         </header>
