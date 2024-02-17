@@ -3,7 +3,6 @@ import Header from '/src/components/page/Header.jsx';
 import Footer from '/src/components/page/Footer.jsx';
 
 // props => {children}
-// eslint-disable-next-line react/prop-types
 export default function BasePage({children}) {
     return (
         <>
@@ -16,7 +15,7 @@ export default function BasePage({children}) {
     )
 }
 
-BasePage.PropTypes = {
+BasePage.propTypes = {
     title: PropTypes.string.isRequired,
     children: PropTypes.node,
 }

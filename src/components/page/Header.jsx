@@ -21,7 +21,7 @@ export default function Header() {
     )
 }
 
-Header.PropTypes = {
+Header.propTypes = {
 }
 
 Header.defaultProps = {

@@ -30,7 +30,7 @@ export default function Footer() {
     )
 }
 
-Footer.PropTypes = {
+Footer.propTypes = {
 }
 
 Footer.defaultProps = {
