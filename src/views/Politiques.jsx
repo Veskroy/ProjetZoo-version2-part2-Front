@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 function Politiques() {
     return (
             <><h1 className="main-title">
