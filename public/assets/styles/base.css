@@ -1598,7 +1598,7 @@ div.content div.container-body-infos {
         width: 100%;
     }
     div.content {
-        background: url('/images/img-animaux/zebres-girafes.png') no-repeat center;
+        background: url('../images/img-animaux/zebres-girafes.png') no-repeat center;
         background-size: cover;
     }
     div.content div.container-body-infos {
