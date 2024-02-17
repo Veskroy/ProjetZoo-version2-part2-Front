@@ -1,6 +1,10 @@
 import { useEffect } from "react"
-import testGetLoggedUser from "./services/api/WildWonderHub"
-import BasePage from "./components/page/BasePage";
+import { useLocation } from "wouter";
+import Router from "./routes";
+
+import { testGetLoggedUser } from "./services/api/WildWonderHub"
+
+import BasePage from './components/page/BasePage';
 
 function App() {
 
@@ -17,12 +21,16 @@ function App() {
     testApiConnection();
   }, []);
 
+  const [location] = useLocation();
+  console.log(location);
+  
   return (
     <>
-      <BasePage>
+      <BasePage className={`${location === '/' ? 'homepage' : 'content'}`}>
+        <Router />
       </BasePage>
     </>
   )
 }
 
-export default App
+export default App;
