@@ -9,10 +9,10 @@ export default function Header() {
     return (
         <header className="header">
             <div className="main-infos">
-                <a href="">
+                <Link href="/">
                     <img src="/public/assets/images/logos/LogoSAE_Zoo.png" className="logo" alt="logo"/>
                     Zoo de la Palmyre
-                </a>
+                </Link>
             </div>
             <nav className="ul-links">
                 <div>
