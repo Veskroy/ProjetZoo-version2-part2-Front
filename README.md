@@ -36,6 +36,7 @@ Le sujet sur lequel s'appuyer pour la réalisation de cette SAE se trouve [ici](
 
 - [React](https://fr.legacy.reactjs.org/docs/getting-started.html)
 - [Vite](https://vitejs.dev/guide/)
+- [Wouter](https://github.com/molefrog/wouter#readme)
 
 <i>(... à compléter)</i>
 
@@ -48,12 +49,17 @@ Le sujet sur lequel s'appuyer pour la réalisation de cette SAE se trouve [ici](
 git clone https://iut-info.univ-reims.fr/gitlab/perr0112/sae4-01-front.git
 ```
 
-2- Installer toutes les dépendances
+2- Se placer dans le projet
+```shell
+cd sae4-01-front
+```
+
+3- Installer toutes les dépendances
 ```shell
 npm install
 ```
 
-3- Démarrer le projet
+4- Démarrer le projet
 ```shell
 npm run dev
 ```
