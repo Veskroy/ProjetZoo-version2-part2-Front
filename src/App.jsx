@@ -1,6 +1,7 @@
-import { useEffect } from "react"
+import {useEffect, useState} from "react"
 import testGetLoggedUser from "./services/api/WildWonderHub"
 import BasePage from "./components/page/BasePage";
+import Loading from "./components/commons/Loading.jsx";
 
 function App() {
 
@@ -16,6 +17,15 @@ function App() {
 
     testApiConnection();
   }, []);
+
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3300)
+  }, [])
+
+  if (loading) {
+    return <Loading/>
+  }
 
   return (
     <>
