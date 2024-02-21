@@ -6,6 +6,9 @@ body {
     width: 100%;
     justify-content: center;
     align-items: center;
+    animation: fadeLoading ease 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
 .loader {
@@ -82,4 +85,16 @@ body {
     90% {
         transform: translateY(5em) scale(1.875, 0.125);
         animation-timing-function: ease-in-out; }
+}
+
+@keyFrames fadeLoading {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
