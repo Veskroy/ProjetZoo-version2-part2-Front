@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'wouter';
 
 
 // props => {}
@@ -8,7 +9,7 @@ export default function Footer() {
             <div className="container-links-news">
                 <div className="container-links">
                     <a href="">Contact</a>
-                    <a href="">Politique de confidentialité</a>
+                    <Link href="/politiques">Politique de confidentialité</Link>
                     <a href="">Forum</a>
                     <a href="">À propos</a>
                 </div>
@@ -30,7 +31,7 @@ export default function Footer() {
     )
 }
 
-Footer.PropTypes = {
+Footer.propTypes = {
 }
 
 Footer.defaultProps = {

@@ -2,6 +2,12 @@ import {useEffect, useState} from "react"
 import testGetLoggedUser from "./services/api/WildWonderHub"
 import BasePage from "./components/page/BasePage";
 import Loading from "./components/commons/Loading.jsx";
+import { useLocation } from "wouter";
+import Router from "./routes";
+
+import { testGetLoggedUser } from "./services/api/WildWonderHub"
+
+import BasePage from './components/page/BasePage';
 
 function App() {
 
@@ -27,12 +33,16 @@ function App() {
     return <Loading/>
   }
 
+  const [location] = useLocation();
+  console.log(location);
+  
   return (
     <>
-      <BasePage>
+      <BasePage className={`${location === '/' ? 'homepage' : 'content'}`}>
+        <Router />
       </BasePage>
     </>
   )
 }
 
-export default App
+export default App;

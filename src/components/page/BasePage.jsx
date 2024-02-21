@@ -2,26 +2,37 @@ import PropTypes from 'prop-types';
 import Header from '/src/components/page/Header.jsx';
 import Footer from '/src/components/page/Footer.jsx';
 
-// props => {children}
-// eslint-disable-next-line react/prop-types
-export default function BasePage({children}) {
+// props => {children, title}
+function BasePage({ children, className }) {
+    console.log('BasePage className :', className);
     return (
         <>
-        <Header>
-        </Header>
-            {children}
-        <Footer>
-        </Footer>
+            <Header />
+                {className === 'homepage' ? (
+                    <div className={className}>
+                        {children}
+                    </div>
+                ) : (
+                    <div className={className}>
+                        <div className="container-body-infos">
+                            {children}
+                        </div>
+                    </div>
+                )}
+                
+            <Footer />
         </>
     )
 }
 
-BasePage.PropTypes = {
-    title: PropTypes.string.isRequired,
+BasePage.propTypes = {
     children: PropTypes.node,
-}
+    className: PropTypes.string,
+};
 
 BasePage.defaultProps = {
-    title: 'Bienvenue !',
     children: "",
-}
+    className: "",
+};
+
+export default BasePage;
