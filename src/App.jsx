@@ -1,4 +1,7 @@
-import { useEffect } from "react"
+import {useEffect, useState} from "react"
+import testGetLoggedUser from "./services/api/WildWonderHub"
+import BasePage from "./components/page/BasePage";
+import Loading from "./components/commons/Loading.jsx";
 import { useLocation } from "wouter";
 import Router from "./routes";
 
@@ -20,6 +23,15 @@ function App() {
 
     testApiConnection();
   }, []);
+
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 2000)
+  }, [])
+
+  if (loading) {
+    return <Loading/>
+  }
 
   const [location] = useLocation();
   console.log(location);
