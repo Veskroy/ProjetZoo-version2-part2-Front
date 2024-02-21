@@ -8,6 +8,12 @@ body {
     align-items: center;
 }
 
+.loader {
+    display: flex;
+    margin: 24px;
+    justify-content: center;
+}
+
 .pl2 {
     justify-content: space-around;
     display: flex;
@@ -22,8 +28,21 @@ body {
     width: 1em;
     height: 1em;
     transform-origin: 50% 100%;
-    animation: bounce2 2s linear infinite;
-    background: green;
+    animation: bounce2 1.7s linear infinite;
+}
+
+.pl2__a {
+    background: #4F614B;
+}
+
+.pl2__b {
+    background: #7c9a76;
+    animation-delay: 0.1s
+}
+
+.pl2__c {
+    background: #a9d0a1;
+    animation-delay: 0.2s
 }
 
 @keyframes bounce2 {
