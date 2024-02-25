@@ -4,7 +4,6 @@ import Footer from '/src/components/page/Footer.jsx';
 
 // props => {children, title}
 function BasePage({ children, className }) {
-    console.log('BasePage className :', className);
     return (
         <>
             <Header />
