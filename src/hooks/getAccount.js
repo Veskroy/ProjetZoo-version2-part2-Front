@@ -36,3 +36,11 @@ export function useRolesUser() {
         isEmployee
     };
 }
+
+// récupère le nom complet de l'utilisateur (prénom + nom)
+export function useUserToString() {
+    const userContext = useContext(UserContext);
+    const userToString = userContext && userContext.user && `${userContext.user.firstname} ${userContext.user.lastname}`;
+
+    return userToString;
+}
