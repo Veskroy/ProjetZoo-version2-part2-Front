@@ -3,13 +3,14 @@
 /* WildWonderHub */
 /*****************/
 
-export const API_URL = 'http://127.0.0.1:8000';
+export const BASE_URL = 'http://127.0.0.1:8000';
+export const API_URL = `${BASE_URL}/api`;
 
 /* premier test : fonction pour récupérer l'utilisateur connecté */
 /* fonctionnel */
 
 export async function testGetLoggedUser() {
-    return fetch(`${API_URL}/login`, {
+    return fetch(`${BASE_URL}/login`, {
         mode: 'no-cors',
         method: 'POST',
         headers: {
@@ -24,19 +25,23 @@ export async function testGetLoggedUser() {
 }
 
 export function loginUrl() {
-    return `${API_URL}/login`;
+    return `${BASE_URL}/login`;
 }
 
 export function logoutUrl() {
-    return `${API_URL}/logout`;
+    return `${BASE_URL}/logout`;
 }
 
 export function registerUrl() {
-    return `${API_URL}/register`;
+    return `${BASE_URL}/register`;
+}
+
+export function adminUrl() {
+    return `${BASE_URL}/admin`;
 }
 
 export async function getUser() {
-    return fetch(`${API_URL}/api/me`, {
+    return fetch(`${BASE_URL}/api/me`, {
         credentials: 'include',
     })
     .then((res) =>
