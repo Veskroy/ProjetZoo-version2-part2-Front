@@ -4,11 +4,18 @@ import { Link } from "wouter";
 
 import { loginUrl, logoutUrl, registerUrl } from "../../services/api/WildWonderHub";
 import { useAccount, useRolesUser } from "../../hooks/getAccount";
+import { useState } from "react";
 
 // props => {}
 export default function Header() {
     const { userContext, isLoggedIn, errorLogin } = useAccount();
     const { isAdmin, isUser, isEmployee } = useRolesUser();
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleOpen = () => {
+        setIsOpen(!isOpen);
+    }
 
     console.log('roles from header: ', isAdmin, isUser, isEmployee);
     console.log('user from header: ', userContext, isLoggedIn);
@@ -20,7 +27,7 @@ export default function Header() {
                     Zoo de la Palmyre
                 </Link>
             </div>
-            <nav className="ul-links">
+            <nav className={`nav-links ${isOpen === true ? 'open' : ''}`}>
                 <div>
                     <Link href="/" className="menu-link">Accueil</Link>
                     <a href="" className="menu-link">Liste des animaux</a>
@@ -28,21 +35,25 @@ export default function Header() {
 
                     {isLoggedIn && userContext && !errorLogin ? (
                         <>
-                            <a href={loginUrl()} className="btn button-secondary">Réserver</a>
-                            <a href={logoutUrl()} className="btn button-primary">Se déconnecter</a>
+                            <Link href={() => {}} className="btn button-secondary">Réserver</Link>
+                            <Link href={logoutUrl()} className="btn button-primary">Se déconnecter</Link>
                             {isAdmin && (
                                 <Link href="/admin" className="btn button-admin">Admin</Link>
                             )}
                         </>
                     ) : (
                         <>
-                            <a href={loginUrl()} className="btn button-secondary">Se connecter</a>
-                            <a href={registerUrl()} className="btn button-primary">S'inscrire</a>
+                            <Link href={loginUrl()} className="btn button-secondary">Se connecter</Link>
+                            <Link href={registerUrl()} className="btn button-primary">S'inscrire</Link>
                         </>
                     )}
-
                 </div>
             </nav>
+
+            <div id="hamburger-menu" onClick={toggleOpen}>
+                <a className="btn button-primary">Menu</a>
+            </div>
+
         </header>
     )
 }
