@@ -9,12 +9,12 @@ export function useAccount() {
     const isLoggedIn = userContext && userContext.user !== null && userContext.user !== undefined;
     console.log("isLoggedIn in useAccount:", isLoggedIn);
 
-    const errorLogin = userContext.user?.status === 500 || !userContext.user?.id;
+    const errorLogin = userContext?.user?.status === 500 || !userContext?.user?.id;
 
     return {
         userContext,
         isLoggedIn,
-        errorLogin
+        errorLogin,
     };
 }
 
