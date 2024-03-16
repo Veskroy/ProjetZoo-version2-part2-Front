@@ -10,6 +10,7 @@ import Pagination from "../components/commons/Pagination";
 
 import PropTypes from 'prop-types';
 import QuestionList from "../components/forum/Questions";
+import Loading from "../components/commons/Loading";
 
 export default function Forum({ page, setPage }) {
 
@@ -63,7 +64,7 @@ export default function Forum({ page, setPage }) {
                 <ErrorLogin />
             ) : (
                 forumData === null || forumData.length === 0 ? (
-                    <p>loading</p>
+                    <Loading />
                 ) : (
                     <>
                         <QuestionList page={page} data={forumData} togglePage={togglePage} />
