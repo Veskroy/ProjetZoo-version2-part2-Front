@@ -334,7 +334,7 @@ button.button-tertiary:hover {
     background-color: var(--secondaryBrown-hover);
 }
 
-a.cursor-not-allowed {
+.cursor-not-allowed {
     cursor: not-allowed !important;
 }
 
@@ -545,14 +545,26 @@ p.center {
     gap: 20px;
 }
 
+.pagination button, .pagination span {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .pagination .pagination-data {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.pagination a.link-first,
-.pagination a.link-last {
+.pagination button {
+    cursor: pointer;
+}
+
+.pagination button.link-first,
+.pagination button.link-last {
     border-radius: 5px;
 }
 
@@ -590,6 +602,10 @@ button.button_list:hover, button.button_list:focus {
 .btn-pagination.pagination-actual-number {
     background-color: var(--primaryBrown);
     color: var(--primaryWhite);
+}
+
+.btn-pagination.pagination-actual-number:hover {
+    background-color: var(--primaryBrown) !important;
 }
 
 /* message lors d'envoi de formulaire */
