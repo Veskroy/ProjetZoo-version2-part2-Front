@@ -11,7 +11,7 @@ function Home() {
     const { userContext, isLoggedIn } = useAccount();
     const userToString = useUserToString();
     const { isAdmin } = useRolesUser();
-    console.log('user from home: ', userContext, isLoggedIn);
+    //console.log('user from home: ', userContext, isLoggedIn);
 
     return (
         <div className="presentation-base">
@@ -31,13 +31,13 @@ function Home() {
                         zoos d'Europe. Fondé en 1966, ce parc zoologique s'étend sur près de 18 hectares au cœur d'une magnifique
                         pinède. Il abrite une incroyable diversité d'animaux provenant des quatre coins du globe, offrant ainsi une
                         expérience immersive et éducative aux visiteurs de tous âges. Avec plus de 1 600 animaux appartenant à plus
-                        de 115 espèces différentes (<Link class="link" href="/">que vous pouvez retrouver ici</Link>), le zoo s'engage activement dans la conservation et la préservation des espèces
+                        de 115 espèces différentes (<Link className="link" href="/">que vous pouvez retrouver ici</Link>), le zoo s'engage activement dans la conservation et la préservation des espèces
                         menacées, tout en offrant des habitats spacieux et naturels pour le bien-être de ses résidents. En plus des
                         fascinantes rencontres animalières, les visiteurs peuvent également profiter de spectacles éducatifs,
                         d'aires de jeux et d'espaces de restauration au sein de ce véritable havre de biodiversité.
                         <br />
                         <br />
-                        Pour toutes questions, n’hésitez pas à consulter notre <Link class="link" href="/">forum</Link> ou <Link class="link" href="/">nous contacter</Link> à notre adresse mail !
+                        Pour toutes questions, n’hésitez pas à consulter notre <Link className="link" href="/">forum</Link> ou <Link className="link" href="/">nous contacter</Link> à notre adresse mail !
                     </p>
                     <img src="assets/images/img-animaux/suricates.png" alt="img animal" />
                 </div>
