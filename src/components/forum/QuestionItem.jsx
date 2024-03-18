@@ -19,7 +19,7 @@ export default function QuestionItem({ question }) {
     } = question;
     return (
         <div className="card-question">
-                <a href="/" className="question-link link-hidden"></a>
+                <a href={`/forum/question/${id}`} className="question-link link-hidden"></a>
                 <div className="card-question__mains-infos">
                     <div className="question-title">
                         <h5 className="question__title">{truncate(title, 30)}</h5>
