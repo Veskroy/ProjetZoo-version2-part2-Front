@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 // paginationData = current, first, previous?, next, last?
 export default function Pagination({ paginationData, togglePage }) {
 
+    if (paginationData === null) return (<></>);
+
     const config_numberPagesDisplayed = 2;
 
     const { current,
         first,
-        previous,
-        next,
         last
     } = paginationData;
 
@@ -19,7 +19,6 @@ export default function Pagination({ paginationData, togglePage }) {
     for (let i = current - config_numberPagesDisplayed; i <= current + config_numberPagesDisplayed; i++) {
         if (i > 1 && i <= last - 1) {
             pages.push(i);
-            console.log("i", i);
         }
     }
 
@@ -78,8 +77,10 @@ export default function Pagination({ paginationData, togglePage }) {
 
 Pagination.propTypes = {
     paginationData: PropTypes.object.isRequired,
+    togglePage: PropTypes.func.isRequired
 }
 
 Pagination.defaultProps = {
     paginationData: null,
+    togglePage: () => {}
 }
