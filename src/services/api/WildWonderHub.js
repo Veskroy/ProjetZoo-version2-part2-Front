@@ -60,3 +60,8 @@ export async function getQuestion(id) {
     return fetch(`${API_URL}/questions/${id}`)
     .then((res) => res.json());
 }
+
+export async function getAllAnswersFromQuestion(id) {
+    return fetch(`${API_URL}/questions/${id}/answers`)
+    .then((res) => res.json());
+}
