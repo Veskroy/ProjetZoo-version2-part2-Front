@@ -5,12 +5,15 @@ import ErrorLogin from "../../components/commons/ErrorLogin";
 import NotFound from "../NotFound";
 
 import { useAccount, useCurrentUser, useRolesUser } from "../../hooks/getAccount"
-import { getAllAnswersFromQuestion, getQuestion } from "../../services/api/WildWonderHub";
+import { getAllAnswersFromQuestion, getQuestion, postAnswerToQuestion } from "../../services/api/WildWonderHub";
 
 import back_icon from "../../../public/assets/images/icons/back_icon.svg";
 import edit_icon from "../../../public/assets/images/icons/edit_icon.svg";
 import QuestionShow from "../../components/forum/QuestionShow";
 import AnswerList from "../../components/forum/AnswerList";
+import FormAnswer from "../../components/forum/FormAnswer";
+import Form from "../../components/commons/Form/Form";
+import Element from "../../components/commons/Form/Element";
 
 export default function QuestionDetails({ id }) {
     const { isLoggedIn, errorLogin } = useAccount();
@@ -20,6 +23,7 @@ export default function QuestionDetails({ id }) {
     
     const [question, setQuestion] = useState({});
     const [answers, setAnswers] = useState({});
+    const [formAnswer, setFormAnswer] = useState('');
 
     useEffect(() => {
         getQuestion(id).then((value) => {
@@ -29,6 +33,20 @@ export default function QuestionDetails({ id }) {
             setAnswers(value["hydra:member"]);
         });
     }, [id]);
+
+    useEffect(() => {
+        console.log(formAnswer);
+    }, [formAnswer]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formAnswer);
+        postAnswerToQuestion(id, formAnswer).then((value) => {
+            console.log(value);
+            setFormAnswer('');
+            window.location.reload();
+        });
+    };
 
     return (
         <div>
@@ -53,6 +71,29 @@ export default function QuestionDetails({ id }) {
                         </div>
                         <QuestionShow question={question} />
                         <AnswerList answers={answers} question={question} />
+
+                        <FormAnswer isResolved={question.isResolved} className="question-interaction">
+                            <div className="reply mt-50 full-width">
+                                <Form className="reply-form" onSubmit={handleSubmit}>
+                                    <Element input={{
+                                        type: 'label',
+                                        text: 'Votre réponse',
+                                    }} />
+                                    <Element handleChange={setFormAnswer}
+                                        input={{
+                                            type: 'textarea',
+                                            required: true,
+                                        }}
+                                    />
+                                    <Element input={{
+                                        type: 'submit',
+                                        text: 'Répondre',
+                                        class: 'btn button-primary full-width',
+                                        onSubmit: handleSubmit,
+                                    }} />
+                                </Form>
+                            </div>
+                        </FormAnswer>
                     </>
                 )
             )}
