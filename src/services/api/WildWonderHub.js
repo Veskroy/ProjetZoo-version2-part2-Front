@@ -51,7 +51,7 @@ export async function getUser() {
     );
 }
 
-export async function getAllQuestions(URLSearchParams = 1) {
-    return fetch(`${API_URL}/questions?page=${URLSearchParams}`)
+export async function getAllQuestions(URLSearchParams = 1, searchTitle = "") {
+    return fetch(`${API_URL}/questions?page=${URLSearchParams}&title=${searchTitle}`)
     .then((res) => res.json());
 }
