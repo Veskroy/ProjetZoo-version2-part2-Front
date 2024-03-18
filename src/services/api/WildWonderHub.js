@@ -55,3 +55,8 @@ export async function getAllQuestions(URLSearchParams = 1, searchTitle = "") {
     return fetch(`${API_URL}/questions?page=${URLSearchParams}&title=${searchTitle}`)
     .then((res) => res.json());
 }
+
+export async function getQuestion(id) {
+    return fetch(`${API_URL}/questions/${id}`)
+    .then((res) => res.json());
+}
