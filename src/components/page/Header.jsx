@@ -17,8 +17,8 @@ export default function Header() {
         setIsOpen(!isOpen);
     }
 
-    console.log('roles from header: ', isAdmin, isUser, isEmployee);
-    console.log('user from header: ', userContext, isLoggedIn);
+    /*console.log('roles from header: ', isAdmin, isUser, isEmployee);
+    console.log('user from header: ', userContext, isLoggedIn);*/
     return (
         <header className="header">
             <div className="main-infos">
@@ -32,19 +32,23 @@ export default function Header() {
                     <Link href="/" className="menu-link">Accueil</Link>
                     <a href="" className="menu-link">Liste des animaux</a>
                     <a href="" className="menu-link">Evènements</a>
+                    <a href="/forum" className="menu-link">Forum</a>
 
                     {isLoggedIn && userContext && !errorLogin ? (
                         <>
                             <Link href={() => {}} className="btn button-secondary">Réserver</Link>
-                            <Link href={logoutUrl()} className="btn button-primary">Se déconnecter</Link>
+                            <a href={logoutUrl()} className="btn button-primary">Se déconnecter</a>
                             {isAdmin && (
                                 <Link href="/admin" className="btn button-admin">Admin</Link>
                             )}
+                            <a href="/">
+                                
+                            </a>
                         </>
                     ) : (
                         <>
-                            <Link href={loginUrl()} className="btn button-secondary">Se connecter</Link>
-                            <Link href={registerUrl()} className="btn button-primary">S'inscrire</Link>
+                            <a href={loginUrl()} className="btn button-secondary">Se connecter</a>
+                            <a href={registerUrl()} className="btn button-primary">S'inscrire</a>
                         </>
                     )}
                 </div>

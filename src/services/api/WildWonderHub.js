@@ -25,7 +25,8 @@ export async function testGetLoggedUser() {
 }
 
 export function loginUrl() {
-    return `${BASE_URL}/login`;
+    //return `${BASE_URL}/login`;
+    return `${BASE_URL}/login?redirect=${window.location.href}`;
 }
 
 export function logoutUrl() {
@@ -48,4 +49,9 @@ export async function getUser() {
         //console.log('api getUser: ', res);
         res.json()
     );
+}
+
+export async function getAllQuestions(URLSearchParams = 1) {
+    return fetch(`${API_URL}/questions?page=${URLSearchParams}`)
+    .then((res) => res.json());
 }

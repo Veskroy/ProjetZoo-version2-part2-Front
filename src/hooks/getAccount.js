@@ -4,10 +4,10 @@ import { UserContext } from "../context/user/index";
 // récupération du compte courant
 export function useAccount() {
     const userContext = useContext(UserContext);
-    console.log("userContext in useAccount:", userContext);
+    //console.log("userContext in useAccount:", userContext);
 
     const isLoggedIn = userContext && userContext.user !== null && userContext.user !== undefined;
-    console.log("isLoggedIn in useAccount:", isLoggedIn);
+    //console.log("isLoggedIn in useAccount:", isLoggedIn);
 
     const errorLogin = userContext?.user?.status === 500 || !userContext?.user?.id;
 
@@ -21,10 +21,10 @@ export function useAccount() {
 // récupération des rôles de l'utilisateur
 export function useRolesUser() {
     const userContext = useContext(UserContext);
-    console.log("userContext in getRolesUser:", userContext);
+    //console.log("userContext in getRolesUser:", userContext);
 
     const roles = userContext && userContext.user && userContext.user.roles;
-    console.log("roles in getRolesUser:", roles);
+    //console.log("roles in getRolesUser:", roles);
 
     const isAdmin = roles && roles.includes("ROLE_ADMIN");
     const isUser = roles && roles.includes("ROLE_USER");
@@ -43,4 +43,10 @@ export function useUserToString() {
     const userToString = userContext && userContext.user && `${userContext.user.firstname} ${userContext.user.lastname}`;
 
     return userToString;
+}
+
+// récupère l'utilisateur courant
+export function useCurrentUser() {
+    const userContext = useContext(UserContext);
+    return userContext.user;
 }
