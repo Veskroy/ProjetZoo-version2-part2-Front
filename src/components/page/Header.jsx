@@ -17,8 +17,6 @@ export default function Header() {
         setIsOpen(!isOpen);
     }
 
-    /*console.log('roles from header: ', isAdmin, isUser, isEmployee);
-    console.log('user from header: ', userContext, isLoggedIn);*/
     return (
         <header className="header">
             <div className="main-infos">
@@ -34,7 +32,7 @@ export default function Header() {
                     <a href="" className="menu-link">Evènements</a>
                     <a href="/forum" className="menu-link">Forum</a>
 
-                    {isLoggedIn && userContext && !errorLogin ? (
+                    {(isLoggedIn && userContext && !errorLogin) ? (
                         <>
                             <Link href={() => {}} className="btn button-secondary">Réserver</Link>
                             <a href={logoutUrl()} className="btn button-primary">Se déconnecter</a>

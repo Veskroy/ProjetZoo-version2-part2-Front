@@ -85,7 +85,7 @@ function Home() {
             <div className="presentation-content">
 
                 <div className="presentation-user mb-100">
-                    {isLoggedIn && userContext && userContext.user && (
+                    {(isLoggedIn && userContext && userContext.user) && (
                         <>
                             <h3>Bonjour, {userToString}</h3>
                             <p className="mt-50">N'hésitez pas à réserver un nouveau ticket pour notre Zoo ici, ou à consulter vos tickets déjà réservés ici !</p>
