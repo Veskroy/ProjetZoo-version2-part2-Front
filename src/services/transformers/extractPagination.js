@@ -1,6 +1,6 @@
 function convertToUrlParams(url) {
     if (url === null || url === undefined) return null;
-    console.log("URLSearchParams", new URLSearchParams(url));
+    //console.log("URLSearchParams", new URLSearchParams(url));
     return url.split('?')[1];
 }
 
@@ -11,7 +11,7 @@ export function extractPagination(hydraView) {
     const next = parseInt(new URLSearchParams(convertToUrlParams(hydraView['hydra:next']))?.get('page'), 10);
     const last = parseInt(new URLSearchParams(convertToUrlParams(hydraView['hydra:last']))?.get('page'), 10);
   
-    if (current === undefined || current === null) {
+    if (current === undefined || current === null || isNaN(current)) {
       return null;
     }
  
