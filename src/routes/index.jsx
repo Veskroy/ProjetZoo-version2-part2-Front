@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import NotFound from "../views/NotFound";
 import Politiques from "../views/Politiques";
 import Home from "../views/Home";
-import Forum from "../views/Forum";
+import Forum from "../views/Forum/Forum";
+import QuestionDetails from "../views/Forum/QuestionDetails";
 
 function Router({ page, setPage }) {
   return (
@@ -13,6 +14,9 @@ function Router({ page, setPage }) {
       <Route path="/politiques" component={Politiques} />
       <Route path="/forum">
         <Forum page={page} setPage={setPage} />
+      </Route>
+      <Route path="/forum/question/:id">
+        {params => <QuestionDetails id={params.id} />}
       </Route>
       <Route component={NotFound} />
     </Switch>

@@ -13,6 +13,7 @@ function BasePage({ children, className }) {
                     </div>
                 ) : (
                     <div className={className}>
+                        <div className="background-img" />
                         <div className="container-body-infos">
                             {children}
                         </div>

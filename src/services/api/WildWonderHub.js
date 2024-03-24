@@ -51,7 +51,32 @@ export async function getUser() {
     );
 }
 
-export async function getAllQuestions(URLSearchParams = 1) {
-    return fetch(`${API_URL}/questions?page=${URLSearchParams}`)
+export async function getAllQuestions(URLSearchParams = 1, searchTitle = "") {
+    return fetch(`${API_URL}/questions?page=${URLSearchParams}&title=${searchTitle}`)
+    .then((res) => res.json());
+}
+
+export async function getQuestion(id) {
+    return fetch(`${API_URL}/questions/${id}`)
+    .then((res) => res.json());
+}
+
+export async function getAllAnswersFromQuestion(id) {
+    return fetch(`${API_URL}/questions/${id}/answers`)
+    .then((res) => res.json());
+}
+
+export async function postAnswerToQuestion(id, answer) {
+    return fetch(`${API_URL}/answers`, {
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+            'content-Type': 'application/ld+json',
+        },
+        body: JSON.stringify({
+            description: answer,
+            question: `/api/questions/${id}`,
+        }),
+    })
     .then((res) => res.json());
 }

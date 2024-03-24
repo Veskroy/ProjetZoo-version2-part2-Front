@@ -50,3 +50,17 @@ export function useCurrentUser() {
     const userContext = useContext(UserContext);
     return userContext.user;
 }
+
+// récupère les rôles de l'utilisateur passé en paramètre
+export function useRolesUserByAuthor(user) {
+    const roles = user && user.roles;
+    const isAdmin = roles && roles.includes("ROLE_ADMIN");
+    const isUser = roles && roles.includes("ROLE_USER");
+    const isEmployee = roles && roles.includes("ROLE_EMPLOYEE");
+
+    return {
+        isAdmin,
+        isUser,
+        isEmployee
+    };
+}

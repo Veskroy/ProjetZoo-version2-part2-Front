@@ -5,6 +5,7 @@ import UserProvider from "./context/user/UserProvider";
 
 import BasePage from "./components/page/BasePage";
 import Router from "./routes";
+import ScrollToTop from "./services/utils/ScrollToTop";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <>
       <UserProvider>
         <BasePage className={`${location === '/' ? 'homepage' : 'content'}`}>
+          <ScrollToTop />
           <Router page={page} setPage={setPage} />
         </BasePage>
       </UserProvider>

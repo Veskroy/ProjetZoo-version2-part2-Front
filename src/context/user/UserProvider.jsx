@@ -8,8 +8,6 @@ export default function UserProvider(props) {
     const [user, setUser] = useState();
     const [loading, setLoading] = useState(true);
 
-    //console.log('user: ', user);
-
     useEffect(() => {
         const getCurrentUser = async () => {
             try {
