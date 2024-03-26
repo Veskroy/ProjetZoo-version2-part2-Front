@@ -8,8 +8,9 @@ export default function Footer() {
         <footer className="full-width">
             <div className="container-links-news">
                 <div className="container-links">
-                    <a href="">Contact</a>
                     <Link href="/politiques">Politique de confidentialité</Link>
+                    <Link href="/reglement">Règlement du Zoo</Link>
+                    <Link href="/contact">Nous contacter</Link>
                     <a href="">Forum</a>
                     <a href="">À propos</a>
                 </div>
