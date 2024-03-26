@@ -1003,7 +1003,7 @@ p.practical-infos__text {
     background: var(--primaryBrown);
 }
 
-/******+*************************/
+/********************************/
 /* politique de confidentialité */
 /********************************/
 
@@ -1017,6 +1017,22 @@ p.practical-infos__text {
 
 .politique-de-confidentialite ul li {
     color: var(--primaryGray);
+}
+
+/***********/
+/* contact */
+/***********/
+
+.contact h5 {
+    margin-block: 20px;
+}
+
+/*************/
+/* reglement */
+/*************/
+
+.reglement h5 {
+    margin-block: 20px;
 }
 
 /*********/
