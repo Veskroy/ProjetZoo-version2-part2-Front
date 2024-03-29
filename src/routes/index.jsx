@@ -6,11 +6,13 @@ import Politiques from "../views/Politiques";
 import Home from "../views/Home";
 import Forum from "../views/Forum/Forum";
 import QuestionDetails from "../views/Forum/QuestionDetails";
+import Profile from "../views/Profile";
 
 function Router({ page, setPage }) {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/profile" component={Profile} />
       <Route path="/politiques" component={Politiques} />
       <Route path="/forum">
         <Forum page={page} setPage={setPage} />
