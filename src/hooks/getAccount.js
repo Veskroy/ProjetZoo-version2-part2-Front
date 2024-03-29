@@ -64,3 +64,14 @@ export function useRolesUserByAuthor(user) {
         isEmployee
     };
 }
+
+// récupère l'id de l'utilisateur passé en paramètre
+export function useCurrentUserId(userContext) {
+    const user = userContext;
+
+    if (!user || !user.user) {
+        return null;
+    }
+
+    return user.user.id;
+}
