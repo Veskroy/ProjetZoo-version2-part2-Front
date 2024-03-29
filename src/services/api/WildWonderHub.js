@@ -80,3 +80,24 @@ export async function postAnswerToQuestion(id, answer) {
     })
     .then((res) => res.json());
 }
+
+export async function getAvatarFromUser(userId) {
+    return `${BASE_URL}/api/users/${userId}/avatar`;
+}
+
+export async function uploadNewAvatar(formData) {
+    /*const formData = new FormData();
+    console.log('file: ', file);
+    formData.append('file', file);*/
+
+    return fetch(`${API_URL}/me/avatar`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+    }).then(
+        success => console.log(success)
+    ).catch(
+    error => console.log(error)
+    );
+    //.then((res) => console.log(res));
+}
