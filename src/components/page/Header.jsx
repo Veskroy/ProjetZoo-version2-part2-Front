@@ -3,13 +3,15 @@
 import { Link } from "wouter";
 
 import { loginUrl, logoutUrl, registerUrl } from "../../services/api/WildWonderHub";
-import { useAccount, useRolesUser } from "../../hooks/getAccount";
+import { useAccount, useCurrentUserId, useRolesUser } from "../../hooks/getAccount";
 import { useState } from "react";
+import UserAvatar from "../user/userAvatar";
 
 // props => {}
 export default function Header() {
     const { userContext, isLoggedIn, errorLogin } = useAccount();
-    const { isAdmin, isUser, isEmployee } = useRolesUser();
+    const { isAdmin } = useRolesUser();
+    const userId = useCurrentUserId(userContext);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -27,21 +29,22 @@ export default function Header() {
             </div>
             <nav className={`nav-links ${isOpen === true ? 'open' : ''}`}>
                 <div>
-                    <Link href="/" className="menu-link">Accueil</Link>
+                <Link to="/" className="menu-link">Accueil</Link>
                     <a href="" className="menu-link">Liste des animaux</a>
                     <a href="" className="menu-link">Evènements</a>
                     <a href="/forum" className="menu-link">Forum</a>
 
                     {(isLoggedIn && userContext && !errorLogin) ? (
                         <>
-                            <Link href={() => {}} className="btn button-secondary">Réserver</Link>
+                            <Link to={() => {}} className="btn button-secondary">Réserver</Link>
                             <a href={logoutUrl()} className="btn button-primary">Se déconnecter</a>
                             {isAdmin && (
                                 <Link href="/admin" className="btn button-admin">Admin</Link>
                             )}
-                            <a href="/">
-                                
-                            </a>
+                            <Link to="/profile" className="profil">
+                                <div style={{ display: 'none' }} />
+                                <UserAvatar userId={userId} />
+                            </Link>
                         </>
                     ) : (
                         <>

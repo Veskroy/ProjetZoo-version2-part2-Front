@@ -24,6 +24,9 @@ export default function Element({ input, handleChange }) {
                     {text}
                 </button>
             )}
+            {type === 'file' && (
+                <input type="file" required={required} />
+            )}
         </div>
     )
 }

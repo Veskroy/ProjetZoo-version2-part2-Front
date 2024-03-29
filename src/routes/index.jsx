@@ -8,11 +8,13 @@ import Contact from "../views/Contact";
 import Home from "../views/Home";
 import Forum from "../views/Forum/Forum";
 import QuestionDetails from "../views/Forum/QuestionDetails";
+import Profile from "../views/Profile";
 
 function Router({ page, setPage }) {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/profile" component={Profile} />
       <Route path="/politiques" component={Politiques} />
         <Route path="/reglement" component={Reglement} />
         <Route path="/contact" component={Contact} />
