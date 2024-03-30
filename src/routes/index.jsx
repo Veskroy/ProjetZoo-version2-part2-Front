@@ -7,6 +7,7 @@ import Home from "../views/Home";
 import Forum from "../views/Forum/Forum";
 import QuestionDetails from "../views/Forum/QuestionDetails";
 import Profile from "../views/Profile";
+import AnimalList from "../views/Animal/AnimalList";
 
 function Router({ page, setPage }) {
   return (
@@ -19,6 +20,9 @@ function Router({ page, setPage }) {
       </Route>
       <Route path="/forum/question/:id">
         {params => <QuestionDetails id={params.id} />}
+      </Route>
+      <Route path="/animals">
+        <AnimalList />
       </Route>
       <Route component={NotFound} />
     </Switch>
