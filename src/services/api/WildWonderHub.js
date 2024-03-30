@@ -101,3 +101,8 @@ export async function uploadNewAvatar(formData) {
     );
     //.then((res) => console.log(res));
 }
+
+export async function getAllAnimals(URLSearchParams = 1, name = "") {
+    return fetch(`${API_URL}/animals/all?page=${URLSearchParams}&name=${name}`)
+    .then((res) => res.json());
+}
