@@ -30,7 +30,7 @@ export default function Header() {
             <nav className={`nav-links ${isOpen === true ? 'open' : ''}`}>
                 <div>
                 <Link to="/" className="menu-link">Accueil</Link>
-                    <a href="" className="menu-link">Liste des animaux</a>
+                    <Link to="/animals" className="menu-link">Liste des animaux</Link>
                     <a href="" className="menu-link">Evènements</a>
                     <a href="/forum" className="menu-link">Forum</a>
 

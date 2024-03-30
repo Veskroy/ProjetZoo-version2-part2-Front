@@ -18,7 +18,7 @@ export default function Forum({ page, setPage }) {
     const user = useCurrentUser();
 
     const [forumData, setForumData] = useState([]);
-    const [paginationData, setPaginationData] = useState(1);
+    const [paginationData, setPaginationData] = useState({});
 
     const [formSearch, setFormSearch] = useState("");
 

@@ -12,6 +12,7 @@
     --darkenGreen: #364434;
     --lightGreen: #afd5a7;
     --primaryBrown: #8D6536;
+    --lightBrown: #c9b8b1;
     --secondaryBrown: #4F3C26;
     --secondaryBrown-hover: #36291b;
     --primaryGray: #544C41;
@@ -1761,3 +1762,69 @@ div.content div.container-body-infos {
     }
 
 }
+
+img.expanded-state-icon {
+    transform: rotate(180deg);
+}
+
+.card-expand {
+    cursor: pointer;
+}
+
+.list-animals {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.animal-infos {
+}
+
+.animal-infos img {
+    width: 100%;
+}
+
+.animal-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.animal-card:nth-child(odd) {
+    background: var(--lightGreen);
+}
+
+.animal-card:nth-child(even) {
+    background: var(--lightBrown);
+}
+
+.animal-card .animal-card__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.animal-card__content .card__content-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.animal-card__infos {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background: var(--primaryWhite);
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.animal-card__infos.hidden {
+    display: none;
+}
+
