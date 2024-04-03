@@ -5,6 +5,7 @@ export default function Element({ input, handleChange }) {
         type,
         text,
         required,
+        placeholder
     } = input;
 
     //console.log(input);
@@ -14,10 +15,10 @@ export default function Element({ input, handleChange }) {
                 <label>{text}</label>
             )}
             {type === 'textarea' && (
-                <textarea required={required} onChange={(e) => handleChange(e.target.value)}></textarea>
+                <textarea placeholder={placeholder} required={required} onChange={(e) => handleChange(e.target.value)}></textarea>
             )}
             {type === 'input' && (
-                <input type="text" required={required} onChange={(e) => handleChange(e.target.value)} />
+                <input type="text" placeholder={placeholder} required={required} onChange={(e) => handleChange(e.target.value)} />
             )}
             {type === 'submit' && (
                 <button type="submit" className={input.class}>
