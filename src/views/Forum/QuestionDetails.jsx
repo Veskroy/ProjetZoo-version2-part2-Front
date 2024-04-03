@@ -7,13 +7,13 @@ import NotFound from "../NotFound";
 import { useAccount, useCurrentUser, useRolesUser } from "../../hooks/getAccount"
 import { getAllAnswersFromQuestion, getQuestion, postAnswerToQuestion } from "../../services/api/WildWonderHub";
 
-import back_icon from "../../../public/assets/images/icons/back_icon.svg";
 import edit_icon from "../../../public/assets/images/icons/edit_icon.svg";
 import QuestionShow from "../../components/forum/QuestionShow";
 import AnswerList from "../../components/forum/AnswerList";
 import FormAnswer from "../../components/forum/FormAnswer";
 import Form from "../../components/commons/Form/Form";
 import Element from "../../components/commons/Form/Element";
+import BackLink from "../../components/commons/BackLink.jsx";
 
 export default function QuestionDetails({ id }) {
     const { isLoggedIn, errorLogin } = useAccount();
@@ -34,15 +34,11 @@ export default function QuestionDetails({ id }) {
         });
     }, [id]);
 
-    useEffect(() => {
-        console.log(formAnswer);
-    }, [formAnswer]);
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formAnswer);
+        console.log(formAnswer,  id);
         postAnswerToQuestion(id, formAnswer).then((value) => {
-            console.log(value);
+            console.log("then postanswer: ", value);
             setFormAnswer('');
             window.location.reload();
         });
@@ -58,10 +54,7 @@ export default function QuestionDetails({ id }) {
                 ) : (
                     <>
                         <div className="btn-actions-question">
-                            <a href="/forum" className="link mbc">
-                                <img src={back_icon} alt="back icon" className="basic-icon back-icon" />
-                                Retour au forum
-                            </a>
+                            <BackLink to="/forum" label="Retour au forum" />
                             {(isAdmin || isEmployee) && (
                                 <a href="/">
                                     <img src={edit_icon} alt="edit icon" className="basic-icon edit-icon" />
@@ -89,7 +82,6 @@ export default function QuestionDetails({ id }) {
                                         type: 'submit',
                                         text: 'Répondre',
                                         class: 'btn button-primary full-width',
-                                        onSubmit: handleSubmit,
                                     }} />
                                 </Form>
                             </div>
