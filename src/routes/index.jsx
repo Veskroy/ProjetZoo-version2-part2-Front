@@ -10,6 +10,7 @@ import Forum from "../views/Forum/Forum";
 import QuestionDetails from "../views/Forum/QuestionDetails";
 import Profile from "../views/Profile";
 import AnimalList from "../views/Animal/AnimalList";
+import QuestionNew from "../views/Forum/QuestionNew";
 
 function Router({ page, setPage }) {
   return (
@@ -22,6 +23,7 @@ function Router({ page, setPage }) {
       <Route path="/forum">
         <Forum page={page} setPage={setPage} />
       </Route>
+        <Route path="/forum/create" component={QuestionNew} />
       <Route path="/forum/question/:id">
         {params => <QuestionDetails id={params.id} />}
       </Route>

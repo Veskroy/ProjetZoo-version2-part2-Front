@@ -2,7 +2,7 @@
 
 import { Link } from "wouter";
 
-import { loginUrl, logoutUrl, registerUrl } from "../../services/api/WildWonderHub";
+import {adminUrl, loginUrl, logoutUrl, registerUrl} from "../../services/api/WildWonderHub";
 import { useAccount, useCurrentUserId, useRolesUser } from "../../hooks/getAccount";
 import { useState } from "react";
 import UserAvatar from "../user/userAvatar";
@@ -39,7 +39,7 @@ export default function Header() {
                             <Link to={() => {}} className="btn button-secondary">Réserver</Link>
                             <a href={logoutUrl()} className="btn button-primary">Se déconnecter</a>
                             {isAdmin && (
-                                <Link href="/admin" className="btn button-admin">Admin</Link>
+                                <a href={adminUrl()} className="btn button-admin">Admin</a>
                             )}
                             <Link to="/profile" className="profil">
                                 <div style={{ display: 'none' }} />
