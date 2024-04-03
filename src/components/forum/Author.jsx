@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 
 import formatDate from '../../services/transformers/formatDate';
+import UserAvatar from "../user/userAvatar.jsx";
 
 export default function Author({ author, dateAnswer }) {
-    const { avatarPathname, firstname, lastname } = author;
+    const { firstname, lastname } = author;
+
     return (
         <div>
-            {/* avatar à implémenter */}
             <p className="author">
+                <UserAvatar userId={author.id} />
                 {firstname + ' ' + lastname}
 
                 {dateAnswer &&
