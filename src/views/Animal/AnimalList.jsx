@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { getAllAnimals } from "../../services/api/WildWonderHub";
 import { extractPagination } from "../../services/transformers/extractPagination";
 import AnimalCard from "../../components/animal/AnimalCard";
-import Pagination from "../../components/commons/Pagination.jsx";
+import Pagination from "../../components/commons/Pagination";
+import SearchBar from "../../components/commons/SearchBar";
 
 export default function AnimalList() {
     
@@ -10,12 +11,14 @@ export default function AnimalList() {
     const [paginationData, setPaginationData] = useState({});
     const [page, setPage] = useState(1);
 
+    const [formSearch, setFormSearch] = useState("");
+
     useEffect(() => {
-        getAllAnimals(page, '').then((value) => {
+        getAllAnimals(page, formSearch).then((value) => {
             setAnimalsListData(value["hydra:member"]);
             setPaginationData(extractPagination(value["hydra:view"]));
         });
-    }, [page]);
+    }, [page, formSearch]);
 
     const togglePage = (number) => {
         setPage(number);
@@ -46,12 +49,22 @@ export default function AnimalList() {
 
             <div className="line line-mbc"></div>
 
-            {/* todo - form de recherche sur le nom d'un animal */}
+            <SearchBar formSearch={formSearch} setFormSearch={setFormSearch}
+                       labelSearch="Rechercher un animal" placeholderInput="Saisissez un mot clé..."/>
 
-            <div className="list-animals">
+            <div className="list-animals mt-50">
 
-                {animalsListData && animalsListData.map((animal, index) => {
-                    return <AnimalCard key={index} animal={animal} firstAnimal={index === 0} />
+                {animalsListData === null ? (
+                        <p className="center">Chargement...</p>
+                    )
+                    :
+                    animalsListData.length === 0 ? (
+                        <>
+                            <p>Résultats de la recherche pour <strong>{formSearch}</strong></p>
+                            <p>Votre recherche n'a donné aucun résultat !</p>
+                        </>
+                    ) : animalsListData.map((animal, index) => {
+                        return <AnimalCard key={index} animal={animal} firstAnimal={index === 0} />
                 })}
 
                 <Pagination togglePage={togglePage} paginationData={paginationData} />
