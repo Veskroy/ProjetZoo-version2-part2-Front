@@ -46,7 +46,6 @@ export default function Pagination({ paginationData, togglePage }) {
                             <span className="btn-pagination pagination-actual-number">{pagedt}</span>
                         ) : (
                             <button
-                                href={`?page=${pagedt}`} className="btn-pagination link-page"
                                 onClick={() => togglePage(pagedt)}
                             >
                                 {pagedt}
