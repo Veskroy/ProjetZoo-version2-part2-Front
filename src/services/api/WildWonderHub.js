@@ -67,8 +67,7 @@ export async function getAllAnswersFromQuestion(id) {
 }
 
 export async function postAnswerToQuestion(id, answer) {
-    return fetch(`${API_URL}/answers`, {
-        credentials: 'include',
+    return fetch(`${API_URL}/answers/new`, {
         method: 'POST',
         headers: {
             'content-Type': 'application/ld+json',
@@ -77,8 +76,13 @@ export async function postAnswerToQuestion(id, answer) {
             description: answer,
             question: `/api/questions/${id}`,
         }),
+        credentials: 'include',
     })
-    .then((res) => res.json());
+    .then(
+        success => console.log("success postAnswer: ", success)
+    ).catch(
+        error => console.log("error postAnswer: ", error)
+    );
 }
 
 export async function getAvatarFromUser(userId) {
@@ -95,14 +99,33 @@ export async function uploadNewAvatar(formData) {
         body: formData,
         credentials: 'include'
     }).then(
-        success => console.log(success)
+        success => console.log("success postAvatar: ", success)
     ).catch(
-    error => console.log(error)
+    error => console.log("error postAvatar: ", error)
     );
-    //.then((res) => console.log(res));
 }
 
 export async function getAllAnimals(URLSearchParams = 1, name = "") {
     return fetch(`${API_URL}/animals/all?page=${URLSearchParams}&name=${name}`)
     .then((res) => res.json());
+}
+
+export async function postQuestion(title, description/*formData*/) {
+    return fetch(`${API_URL}/questions/new`, {
+        method: 'POST',
+        headers: {
+            'content-Type': 'application/ld+json',
+        },
+        body: JSON.stringify({
+            title: title,
+            description: description,
+            author: `/api/me`,
+            isResolved: false
+        }),
+        credentials: "include"
+    }).then(
+        success => console.log("success postQuestion: ", success)
+    ).catch(
+        error => console.log("error postQuestion: ", error)
+    );
 }
