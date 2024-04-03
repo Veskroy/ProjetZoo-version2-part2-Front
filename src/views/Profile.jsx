@@ -1,10 +1,11 @@
 import { Link } from "wouter";
-import { logoutUrl, uploadNewAvatar } from "../services/api/WildWonderHub";
+import {logoutUrl, patchUserInformations, uploadNewAvatar} from "../services/api/WildWonderHub";
 import { useAccount, useCurrentUserId, useUserToString } from "../hooks/getAccount";
 import ErrorLogin from "../components/commons/ErrorLogin";
 import UserAvatar from "../components/user/userAvatar";
 import AvatarForm from "../components/user/AvatarForm";
 import { useState } from "react";
+import UserInformationsForm from "../components/user/UserInformationsForm.jsx";
 
 export default function Profile() {
     
@@ -13,6 +14,7 @@ export default function Profile() {
     const userId = useCurrentUserId(userContext);
 
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     if (!userContext || errorLogin || !isLoggedIn) {
         return <ErrorLogin />
@@ -44,6 +46,41 @@ export default function Profile() {
         }, 3000);
     };
 
+    const handleInformationsSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+
+        const data = {
+            firstname: formData.get('firstname') === '' ? userContext.user.firstname : formData.get('firstname'),
+            lastname: formData.get('lastname') === '' ? userContext.user.lastname : formData.get('lastname'),
+            phone: formData.get('phone') === '' ? userContext.user.phone : formData.get('phone'),
+            address: formData.get('address') === '' ? userContext.user.address : formData.get('address'),
+            pc: formData.get('pc') === '' ? userContext.user.pc : formData.get('pc'),
+            city: formData.get('city') === '' ? userContext.user.city : formData.get('city')
+        };
+
+        setLoading(true);
+        setError(false);
+
+        setTimeout(async () => {
+            try {
+                const res = await patchUserInformations(data);
+                console.log("Informations updated");
+                if (res && res.status === 200) {
+                    window.location.reload();
+                } else {
+                    setError(true);
+                }
+                // window.location.reload();
+            } catch (error) {
+                console.error("Error updating informations:", error);
+                setError(true);
+            }
+            setLoading(false);
+        }, 3000);
+    }
+
     return (
         <div className="profile">
 
@@ -57,9 +94,17 @@ export default function Profile() {
 
         <div className="edit-profile">
 
-            {/* todo: forms */}
+            <AvatarForm handleAvatarSubmit={handleAvatarSubmit} />
 
-            <AvatarForm handleAvatarSubmit={handleAvatarSubmit} loading={loading} />
+            {error &&
+                <p className="message message-error">
+                    Une erreur est survenue lors de la modification de vos informations.
+                    <br />
+                    Veuillez réessayer.
+                </p>
+            }
+
+            <UserInformationsForm handleInformationsSubmit={handleInformationsSubmit} loading={loading} />
 
             <div className="btn-actions">
                 <a className="btn button-primary" href="">Supprimer mon compte</a>

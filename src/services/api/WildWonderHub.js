@@ -129,3 +129,40 @@ export async function postQuestion(title, description/*formData*/) {
         error => console.log("error postQuestion: ", error)
     );
 }
+
+/*export async function patchUserInformations(data) {
+    return fetch(`${API_URL}/me/edit`, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/merge-patch+json',
+        },
+    }).then(
+        success => console.log("success patchUserInformations: ", success)
+    ).catch(
+        error => console.log("error patchUserInformations: ", error)
+    );
+}
+*/
+export async function patchUserInformations(data) {
+    try {
+        const response = await fetch(`${API_URL}/me/edit`, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/merge-patch+json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update user information');
+        }
+
+        return response;
+    } catch (error) {
+        console.error("Error patching user information:", error);
+        throw error;
+    }
+}

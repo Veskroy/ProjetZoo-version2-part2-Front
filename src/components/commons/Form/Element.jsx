@@ -5,12 +5,13 @@ export default function Element({ input, handleChange }) {
         type,
         text,
         required,
-        placeholder
+        placeholder,
+        name
     } = input;
 
     //console.log(input);
     return (
-        <div>
+        <>
             {type === 'label' && (
                 <label>{text}</label>
             )}
@@ -18,7 +19,7 @@ export default function Element({ input, handleChange }) {
                 <textarea placeholder={placeholder} required={required} onChange={(e) => handleChange(e.target.value)}></textarea>
             )}
             {type === 'input' && (
-                <input type="text" placeholder={placeholder} required={required} onChange={(e) => handleChange(e.target.value)} />
+                <input name={name} type="text" placeholder={placeholder} required={required} onChange={(e) => handleChange(e.target.value)} />
             )}
             {type === 'submit' && (
                 <button type="submit" className={input.class}>
@@ -28,7 +29,7 @@ export default function Element({ input, handleChange }) {
             {type === 'file' && (
                 <input type="file" required={required} />
             )}
-        </div>
+        </>
     )
 }
 

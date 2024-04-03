@@ -75,3 +75,18 @@ export function useCurrentUserId(userContext) {
 
     return user.user.id;
 }
+
+// récupérer les informations principales de l'utilisateur (prénom, nom, numéro de téléphone, adresse, code postal, ville
+export function useUserInformations() {
+    const userContext = useContext(UserContext);
+    const user = userContext.user;
+
+    return {
+        firstname: user.firstname,
+        lastname: user.lastname,
+        phone: user.phone,
+        address: user.address,
+        pc: user.pc,
+        city: user.city
+    };
+}
