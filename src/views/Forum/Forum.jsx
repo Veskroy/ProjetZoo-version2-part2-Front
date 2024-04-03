@@ -11,6 +11,7 @@ import Pagination from "../../components/commons/Pagination";
 import PropTypes from 'prop-types';
 import QuestionList from "../../components/forum/QuestionList";
 import SearchBar from "../../components/commons/SearchBar";
+import { Link } from "wouter";
 
 export default function Forum({ page, setPage }) {
 
@@ -41,45 +42,58 @@ export default function Forum({ page, setPage }) {
         <div className="forum">
             <h1 className="main-title green">Forum du Zoo de la Palmyre</h1>
             <p className="center mt-50 mb-50">
-                Bienvenue sur le forum de notre Zoo ! Ici, vous pouvez poser toutes vos questions sur les animaux, les horaires, les tarifs, etc.
-                <br />
-                Vous pouvez également répondre aux questions des autres utilisateurs, et même liker les posts qui vous plaisent pour les mettre en avant.
-                <br />
+                Bienvenue sur le forum de notre Zoo ! Ici, vous pouvez poser toutes vos questions sur les animaux, les
+                horaires, les tarifs, etc.
+                <br/>
+                Vous pouvez également répondre aux questions des autres utilisateurs, et même liker les posts qui vous
+                plaisent pour les mettre en avant.
+                <br/>
                 Vous avez donc accès à vos posts et à vos posts favoris.
-                <br />
-                <br />
+                <br/>
+                <br/>
                 Merci de respecter nos règles de bonne conduite.
             </p>
 
             {(isEmployee || isAdmin) && (
                 <p className="admin-or-employee-only">
-                Bonjour, {userToString}, vous êtes un administrateur ou employé de notre Zoo.
-                <br />
-                Par conséquent, vous avez la possibilité de supprimer un post, de le modifier, de le rendre résolu ou non.
-                <br />
-                Vous pouvez également supprimer ou modifier un commentaire qui pourrait être offensant, ou non approprié.
-            </p>
+                    Bonjour {userToString}, vous êtes un administrateur ou employé de notre Zoo.
+                    <br/>
+                    Par conséquent, vous avez la possibilité de supprimer un post, de le modifier, de le rendre résolu
+                    ou non.
+                    <br/>
+                    Vous pouvez également supprimer ou modifier un commentaire qui pourrait être offensant, ou non
+                    approprié.
+                </p>
             )}
 
+            <Link to="/" className="link mbc">
+                Voir mes posts
+            </Link>
+
+            <Link to="/forum/create" className="link mbc">
+                Créer un post
+            </Link>
+
             {!user || errorLogin || !isLoggedIn ? (
-                <ErrorLogin />
+                <ErrorLogin/>
             ) : (
                 forumData === null ? (
                     <p className="mt-50">Aucun post n'a été trouvé.</p>
                 ) : (
                     <>
-                        <SearchBar formSearch={formSearch} setFormSearch={setFormSearch} labelSearch="Rechercher un post" placeholderInput="Saisissez un mot clé..." />
+                        <SearchBar formSearch={formSearch} setFormSearch={setFormSearch}
+                                   labelSearch="Rechercher un post" placeholderInput="Saisissez un mot clé..."/>
                         {forumData.length === 0 ? (
+                                <>
+                                    <p className="mt-50">Résultats de la recherche pour <strong>{formSearch}</strong></p>
+                                    <p>Votre recherche n'a donné aucun résultat !</p>
+                                    <a href="/forum" className="link mbc">Retour à la page d'accueil du forum</a>
+                                </>
+                            ) :
                             <>
-                                <p className="mt-50">Résultats de la recherche pour <strong>{formSearch}</strong></p>
-                                <p>Votre recherche n'a donné aucun résultat !</p>
-                                <a href="/forum" className="link mbc">Retour à la page d'accueil du forum</a>
-                            </>
-                        ) :
-                        <>
-                            <QuestionList page={page} data={forumData} togglePage={togglePage} />
-                            <Pagination togglePage={togglePage} paginationData={paginationData} />
-                        </>}
+                                <QuestionList page={page} data={forumData} togglePage={togglePage}/>
+                                <Pagination togglePage={togglePage} paginationData={paginationData}/>
+                            </>}
                     </>
                 )
             )}
@@ -94,5 +108,6 @@ Forum.propTypes = {
 
 Forum.defaultProps = {
     page: 1,
-    setPage: () => {}
+    setPage: () => {
+    }
 }
