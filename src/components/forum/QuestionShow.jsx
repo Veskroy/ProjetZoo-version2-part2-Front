@@ -1,17 +1,37 @@
 import PropTypes from 'prop-types';
 import Author from './Author';
 import formatDate from '../../services/transformers/formatDate';
-import { useRolesUserByAuthor } from '../../hooks/getAccount';
+import {useRolesUser, useRolesUserByAuthor} from '../../hooks/getAccount';
+import {patchQuestion} from "../../services/api/WildWonderHub.js";
+
+import likeIcon from '../../../public/assets/images/icons/like_icon.svg';
+
 
 export default function QuestionShow({ question }) {
     const { isAdmin, isEmployee } = useRolesUserByAuthor(question.author);
+    const userRoles = useRolesUser();
+
+    const handleResolvedPost = () => {
+        const data = {
+            isResolved: !question.isResolved
+        };
+        patchQuestion(data, question.id).then((value) => {
+            console.log("then patchQuestion: ", value);
+            window.location.reload();
+        });
+    }
+
     return (
         <div className="show-question">
             <div className="data-question">
                 <div className="question-main__informations">
                     <h2>{question.title}</h2>
                     <div className="question-state">
-                        {/* réouverture, fermeture du post à implémenter */}
+                        {(userRoles.isAdmin || userRoles.isEmployee) &&
+                            <span className="badge set-resolved" onClick={handleResolvedPost}>
+                                {question.isResolved ? 'Réouvrir le post' : 'Fermer le post'}
+                            </span>
+                        }
                         <span className="badge badge-resolved">
                             Post {question.isResolved ? 'fermé' : 'ouvert'}
                         </span>
@@ -35,7 +55,16 @@ export default function QuestionShow({ question }) {
             </div>
             <p className="question__description">{question.description}</p>
 
-            {/* likes à implémenter */}
+            <p className="question__total-likes">
+                {question.likes.length > 0 ?
+                    (<span className="badge badge-likes">
+                        {question.likes.length}
+                        <img src={likeIcon} alt="like icon" className="basic-icon like-icon" />
+                    </span>)
+                :
+                    ( <p>Ce post n'a pas été liké.</p> )
+                }
+            </p>
         </div>
     )
 }
