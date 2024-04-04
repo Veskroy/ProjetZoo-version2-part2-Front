@@ -11,6 +11,7 @@ import QuestionDetails from "../views/Forum/QuestionDetails";
 import Profile from "../views/Profile";
 import AnimalList from "../views/Animal/AnimalList";
 import QuestionNew from "../views/Forum/QuestionNew";
+import QuestionEdit from "../views/Forum/QuestionEdit.jsx";
 
 function Router({ page, setPage }) {
   return (
@@ -27,6 +28,9 @@ function Router({ page, setPage }) {
       <Route path="/forum/question/:id">
         {params => <QuestionDetails id={params.id} />}
       </Route>
+        <Route path="/forum/question/:id/edit">
+            {params => <QuestionEdit id={params.id} />}
+        </Route>
       <Route path="/animals">
         <AnimalList />
       </Route>
