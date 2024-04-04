@@ -4,7 +4,7 @@ import Form from "../commons/Form/Form";
 import PropTypes from 'prop-types';
 
 export default function AvatarForm({ handleAvatarSubmit, loading }) {
-    let textElement = loading ? 'Chargement...' : 'Modifier mon avatar';
+    let textElement = loading ? 'Modification de votre avatar...' : 'Modifier mon avatar';
     return (
         <Form className="avatar-form" onSubmit={handleAvatarSubmit}>
             <Element input={{

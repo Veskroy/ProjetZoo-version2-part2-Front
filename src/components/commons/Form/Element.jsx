@@ -16,7 +16,7 @@ export default function Element({ input, handleChange }) {
                 <label>{text}</label>
             )}
             {type === 'textarea' && (
-                <textarea placeholder={placeholder} required={required} onChange={(e) => handleChange(e.target.value)}></textarea>
+                <textarea name={name} placeholder={placeholder} required={required} onChange={(e) => handleChange(e.target.value)}></textarea>
             )}
             {type === 'input' && (
                 <input name={name} type="text" placeholder={placeholder} required={required} onChange={(e) => handleChange(e.target.value)} />

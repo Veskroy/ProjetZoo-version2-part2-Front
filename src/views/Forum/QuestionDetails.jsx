@@ -13,7 +13,8 @@ import AnswerList from "../../components/forum/AnswerList";
 import FormAnswer from "../../components/forum/FormAnswer";
 import Form from "../../components/commons/Form/Form";
 import Element from "../../components/commons/Form/Element";
-import BackLink from "../../components/commons/BackLink.jsx";
+import BackLink from "../../components/commons/BackLink";
+import { Link } from "wouter";
 
 export default function QuestionDetails({ id }) {
     const { isLoggedIn, errorLogin } = useAccount();
@@ -22,7 +23,7 @@ export default function QuestionDetails({ id }) {
     //console.log(user);
     
     const [question, setQuestion] = useState({});
-    const [answers, setAnswers] = useState({});
+    const [answers, setAnswers] = useState([]);
     const [formAnswer, setFormAnswer] = useState('');
 
     useEffect(() => {
@@ -56,10 +57,10 @@ export default function QuestionDetails({ id }) {
                         <div className="btn-actions-question">
                             <BackLink to="/forum" label="Retour au forum" />
                             {(isAdmin || isEmployee) && (
-                                <a href="/">
+                                <Link href={`/forum/question/${question.id}/edit`}>
                                     <img src={edit_icon} alt="edit icon" className="basic-icon edit-icon" />
                                     Modifier
-                                </a>
+                                </Link>
                             )}
                         </div>
                         <QuestionShow question={question} />

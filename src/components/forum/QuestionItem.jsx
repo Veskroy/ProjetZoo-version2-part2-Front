@@ -5,17 +5,21 @@ import check_icon from '../../../public/assets/images/icons/check_icon.svg';
 import Author from './Author';
 import formatDate from '../../services/transformers/formatDate';
 
+import iconMsg from '../../../public/assets/images/icons/message_icon.svg';
+import likeIcon from '../../../public/assets/images/icons/like_icon.svg';
+
 export default function QuestionItem({ question }) {
     // question : id, createdAt, description, isResolved, title, author
     // author : firstname, lastname, avatarPathname
     const {
         id,
         createdAt,
-        description,
         isResolved,
         title,
         author,
-        updatedAt
+        updatedAt,
+        likes,
+        answers
     } = question;
     return (
         <div className="card-question">
@@ -24,7 +28,10 @@ export default function QuestionItem({ question }) {
                     <div className="question-title">
                         <h5 className="question__title">{truncate(title, 30)}</h5>
                         <div className="data-answers">
-                            {/* likes à implémenter */}
+                            <span>
+                                <img src={iconMsg} alt="msg-icon" className="basic-icon msg-icon" />
+                                {answers.length}
+                            </span>
                             {isResolved ?
                                 <img src={check_icon} alt="checked" className="basic-icon checked-icon" />
                                 :
@@ -46,7 +53,10 @@ export default function QuestionItem({ question }) {
                             <p className="date-creation">Post créé le {formatDate(createdAt)}</p>
                         </div>
 
-                        {/* compteur de likes à implémenter */}
+                        <span className="badge badge-likes">
+                                {likes.length}
+                            <img src={likeIcon} alt="like icon" className="basic-icon like-icon" />
+                        </span>
 
                     </div>
 
@@ -57,4 +67,8 @@ export default function QuestionItem({ question }) {
 
 QuestionItem.propTypes = {
     question: PropTypes.object.isRequired
-}
+};
+
+QuestionItem.defaultProps = {
+    question: {}
+};
