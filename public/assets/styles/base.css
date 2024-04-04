@@ -241,11 +241,6 @@ h3.presentation__title::after {
     right: 15px;
     top: 15px;
 }
-
-.settings-action .settings-action__dropdown-btn {
-    cursor: pointer;
-}
-
 .settings-action .dropdown-menu {
     position: absolute;
     background-color: var(--primaryWhite);
@@ -256,6 +251,18 @@ h3.presentation__title::after {
     display: none;
     right: 0;
     z-index: 99;
+}
+
+.settings-action .dropdown-menu.show {
+    display: block;
+}
+
+.settings-action .dropdown-menu.hide {
+    display: none;
+}
+
+.settings-action .settings-action__dropdown-btn {
+    cursor: pointer;
 }
 
 .settings-action.visible .dropdown-menu {
