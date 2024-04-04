@@ -18,3 +18,8 @@ FROM WildWonderHub_dev AS WildWonderHub_build
 ARG REACT_APP_API_ENTRYPOINT
 RUN set -eux;  \
         npm run build
+
+FROM nginx:${NGINX_VERSION} AS WildWonderHub_nginx
+COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d/
+WORKDIR /usr/src/app
+COPY --from=WildWonderHub_build /usr/src/app ./
