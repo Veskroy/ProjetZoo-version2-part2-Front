@@ -90,9 +90,24 @@ export async function getAvatarFromUser(userId) {
 }
 
 export async function uploadNewAvatar(formData) {
+    return fetch(`${API_URL}/me/avatar`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+    }).then(
+        response => {
+            if (!response.ok) {
+                throw new Error(`Request failed with status ${response.status}`);
+            }
+            return response.json();
+        }
+    );
+}
+
+/* export async function uploadNewAvatar(formData) {
     /*const formData = new FormData();
-    console.log('file: ', file);
-    formData.append('file', file);*/
+    console.log('file: ', formData);
+    // formData.append('file', file);
 
     return fetch(`${API_URL}/me/avatar`, {
         method: 'POST',
@@ -102,8 +117,27 @@ export async function uploadNewAvatar(formData) {
         success => console.log("success postAvatar: ", success)
     ).catch(
     error => console.log("error postAvatar: ", error)
-    );
-}
+    );/*
+    try {
+        const response = await fetch(`${API_URL}/me/avatar`, {
+            method: 'POST',
+            body: formData,
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update user information');
+        }
+
+        return response;
+    } catch (error) {
+        console.error("Error patching user information:", error);
+        throw error;
+    }
+} */
 
 export async function getAllAnimals(URLSearchParams = 1, name = "") {
     return fetch(`${API_URL}/animals/all?page=${URLSearchParams}&name=${name}`)
