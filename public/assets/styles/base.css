@@ -792,12 +792,20 @@ div.edit-profile form::after {
     margin-top: 30px;
 }
 
-form.register-form, form.question-form, form.answer-form {
+form.register-form, form.answer-form {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+}
+
+form.question-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -850,6 +858,8 @@ div.edit-profile div.btn-actions {
 img.avatar {
     object-fit: cover;
     width: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
 }
 
 /************/
@@ -1700,7 +1710,7 @@ div.content div.container-body-infos {
 @media screen and (min-width: 1000px) {
     h1.main-title::after {
         content: '';
-        background-image: url("/images/icons/paw-filled_icon.svg");
+        background-image: url('../../assets/images/icons/paw-filled_icon.svg');
         display: block;
         width: 40px;
         height: 40px;
