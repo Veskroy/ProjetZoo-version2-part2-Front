@@ -104,41 +104,6 @@ export async function uploadNewAvatar(formData) {
     );
 }
 
-/* export async function uploadNewAvatar(formData) {
-    /*const formData = new FormData();
-    console.log('file: ', formData);
-    // formData.append('file', file);
-
-    return fetch(`${API_URL}/me/avatar`, {
-        method: 'POST',
-        body: formData,
-        credentials: 'include'
-    }).then(
-        success => console.log("success postAvatar: ", success)
-    ).catch(
-    error => console.log("error postAvatar: ", error)
-    );/*
-    try {
-        const response = await fetch(`${API_URL}/me/avatar`, {
-            method: 'POST',
-            body: formData,
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to update user information');
-        }
-
-        return response;
-    } catch (error) {
-        console.error("Error patching user information:", error);
-        throw error;
-    }
-} */
-
 export async function getAllAnimals(URLSearchParams = 1, name = "") {
     return fetch(`${API_URL}/animals/all?page=${URLSearchParams}&name=${name}`)
     .then((res) => res.json());
@@ -164,21 +129,6 @@ export async function postQuestion(title, description/*formData*/) {
     );
 }
 
-/*export async function patchUserInformations(data) {
-    return fetch(`${API_URL}/me/edit`, {
-        method: 'PATCH',
-        body: JSON.stringify(data),
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/merge-patch+json',
-        },
-    }).then(
-        success => console.log("success patchUserInformations: ", success)
-    ).catch(
-        error => console.log("error patchUserInformations: ", error)
-    );
-}
-*/
 export async function patchUserInformations(data) {
     try {
         const response = await fetch(`${API_URL}/me/edit`, {
@@ -197,6 +147,29 @@ export async function patchUserInformations(data) {
         return response;
     } catch (error) {
         console.error("Error patching user information:", error);
+        throw error;
+    }
+}
+
+export async function patchQuestion(data, id) {
+    console.log("data: ", data, "id: ", id, JSON.stringify(data))
+    try {
+        const response = await fetch(`${API_URL}/questions/${id}`, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/merge-patch+json',
+            },
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update question');
+        }
+        console.log("response: ", response)
+        return response;
+    } catch (error) {
+        console.error("Error patching question:", error);
         throw error;
     }
 }
