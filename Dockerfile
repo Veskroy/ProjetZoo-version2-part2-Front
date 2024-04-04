@@ -20,6 +20,7 @@ RUN set -eux;  \
         npm run build
 
 FROM nginx:${NGINX_VERSION} AS wildwonderhub_nginx
+RUN chmod -x /etc/nginx/conf.d/default.conf
 COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d/
 WORKDIR /usr/src/app
 COPY --from=wildwonderhub_build /usr/src/app ./
