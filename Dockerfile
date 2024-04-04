@@ -13,3 +13,8 @@ COPY . ./
 VOLUME node_modules
 EXPOSE 5173
 CMD "npm" "start"
+
+FROM WildWonderHub_dev AS WildWonderHub_build
+ARG REACT_APP_API_ENTRYPOINT
+RUN set -eux;  \
+        npm run build
