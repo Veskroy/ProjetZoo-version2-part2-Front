@@ -12,7 +12,7 @@ import Profile from "../views/Profile";
 import AnimalList from "../views/Animal/AnimalList";
 import QuestionNew from "../views/Forum/QuestionNew";
 import QuestionEdit from "../views/Forum/QuestionEdit.jsx";
-import Ticket from "../views/Ticket/Ticket.jsx";
+import Ticket_view from "../views/Ticket/Ticket_view.jsx";
 
 function Router({ page, setPage }) {
   return (
@@ -22,7 +22,7 @@ function Router({ page, setPage }) {
       <Route path="/politiques" component={Politiques} />
         <Route path="/reglement" component={Reglement} />
         <Route path="/contact" component={Contact} />
-        <Route path="/ticket" component={Ticket}/>
+        <Route path="/ticket" component={Ticket_view}/>
       <Route path="/forum">
         <Forum page={page} setPage={setPage} />
       </Route>

@@ -2,8 +2,8 @@ import Ticket from "../../components/commons/Ticket.jsx";
 
 export default function Ticket_view() {
     const ticket=[
-        {"Price": 5,"Type": "Junior", "Date":"Lundi"},
-        {"Price": 6,"Type": "Senior", "Date":"Lundi"}
+        {Price: 5,Type:"Junior", Date:"Lundi"},
+        {Price: 6,Type: "Senior", Date:"Lundi"}
     ]
     /* donné temporaire pur test*/
     return (
