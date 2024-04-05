@@ -29,7 +29,7 @@ export default function Ticket_view() {
         </div>
             <div class="tickets-container">
                 <div class="tickets-past mt-50">
-                    <Ticket ticket={ticket}></Ticket>
+                    <Ticket tickets={ticket}></Ticket>
                 </div>
             </div>
             <div className="form-ticket-add" id="réserver">

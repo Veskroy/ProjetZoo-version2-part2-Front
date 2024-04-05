@@ -1,56 +1,51 @@
 import PropTypes from 'prop-types';
 import Dropdown from './Dropdown';
 
-export default function Ticket({ id, type, price, date }) {
+export default function Ticket({ tickets }) {
+
   /* avalaibility: todo */
   const available = true;
+
   return (
-    <div className="ticket planned-ticket">
+      <>
+      {tickets.map((ticket, index) => (
+        <div  key= {index} className="ticket tickets-future">
         <div className="ticket-content">
+
             <div className="ticket-content__top">
                 <p>{/*Passé, aujourd'hui, demain ou bientôt*/}</p>
+
                 {available ? (
-                    <Dropdown actions={[
-                        {
-                            label: 'Récapitulatif',
-                            href: {/* todo */}
-                        }
-                    ]} />
+                    <Dropdown actions={[{label: 'Récapitulatif', href: {/* todo */}} ]} />
                 )
                 :
                 (
-                    <Dropdown actions={[
-                        {
-                            label: 'Récapitulatif',
-                            href: {/* todo */}
-                        },
-                        {
-                            label: 'Modifier',
-                            href: {/* todo */}
-                        }
-                    ]} />
-                )}
+                    <Dropdown actions={[{label: 'Récapitulatif', href: {/* todo */}}, {label: 'Modifier', href: {/* todo */}}]} />)}
             </div>
             <div className="ticket-content__middle">
-                <img src="{{ asset('images/Sae_Zoo_Image/LogoSAE_Zoo.png') }}" alt="logo" className="logo" />
+                <img src="../../../public/assets/images/logos/LogoSAE_Zoo.png" alt="logo" className="logo" />
             </div>
             <div className="ticket-content__bottom">
                 <div className="content__bottom-left">
-                    <p>{price}€</p>
+                    <p>{ticket.price}€</p>
                 </div>
                 <div className="content__bottom-right">
-                    <p>{date}</p>
-                    <p>{type}</p>
+                    <p>{ticket.date}</p>
+                    <p>{ticket.type}</p>
                 </div>
             </div>
         </div>
     </div>
-  )
+    ))}
+    </>
+  );
 }
 
 Ticket.propTypes = {
-    id: PropTypes.number.isRequired,
+    tickets: PropTypes.arrayOf(PropTypes.shape({
+   //  id: PropTypes.number.isRequired, Temporaire
     type: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired
+    })).isRequired,
 };
