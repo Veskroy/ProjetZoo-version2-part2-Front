@@ -12,6 +12,7 @@ import Profile from "../views/Profile";
 import AnimalList from "../views/Animal/AnimalList";
 import QuestionNew from "../views/Forum/QuestionNew";
 import QuestionEdit from "../views/Forum/QuestionEdit.jsx";
+import Ticket from "../views/Ticket/Ticket.jsx";
 
 function Router({ page, setPage }) {
   return (
@@ -21,6 +22,7 @@ function Router({ page, setPage }) {
       <Route path="/politiques" component={Politiques} />
         <Route path="/reglement" component={Reglement} />
         <Route path="/contact" component={Contact} />
+        <Route path="/ticket" component={Ticket}/>
       <Route path="/forum">
         <Forum page={page} setPage={setPage} />
       </Route>
@@ -40,7 +42,6 @@ function Router({ page, setPage }) {
 }
 
 export default Router;
-
 Router.propTypes = {
   page: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired
