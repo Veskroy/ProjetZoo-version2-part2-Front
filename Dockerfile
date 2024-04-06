@@ -26,7 +26,7 @@ ENV NGINX_VERSION=1.32.0
 
 FROM  nginx:${NGINX_VERSION}alpine as react_nginx
 
-COPY docker/nginx/default.conf /etc/nginx/
+COPY docker/nginx/conf.d/default.conf /etc/nginx/
 
 WORKDIR /etc/nginx/conf.d/
 
