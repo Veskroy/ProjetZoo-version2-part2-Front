@@ -19,20 +19,13 @@ export default function Ticket({ tickets }) {
 
             <div className="ticket-content__top">
                 <p>{/*Passé, aujourd'hui, demain ou bientôt*/}</p>
-
-                {available ? (
-                    <Dropdown actions={[{label: 'Récapitulatif', href: {/* todo */}} ]} />
-                )
-                :
-                (
-                    <Dropdown actions={[{label: 'Récapitulatif', href: {/* todo */}}, {label: 'Modifier', href: {/* todo */}}]} />)}
             </div>
             <div className="ticket-content__middle">
                 <img src="../../../public/assets/images/logos/LogoSAE_Zoo.png" alt="logo" className="logo" />
             </div>
             <div className="ticket-content__bottom">
                 <div className="content__bottom-left">
-                    <p>{ticket.price}€</p>
+                    <p>{ ticket.price !== null ? ticket.price : 0}€</p>
                 </div>
                 <div className="content__bottom-right">
                     <p>{ticket.type}</p>
