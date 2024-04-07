@@ -173,3 +173,8 @@ export async function patchQuestion(data, id) {
         throw error;
     }
 }
+export async function getTickets(id) {
+    return fetch(`${API_URL}/tickets?user=${id}`)
+        .then((res) => res.json());
+}
+
