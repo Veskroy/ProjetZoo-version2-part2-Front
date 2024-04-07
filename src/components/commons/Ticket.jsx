@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
 import Dropdown from './Dropdown';
+// import {getTicket} from "../../services/api/WildWonderHub.js";
 
 export default function Ticket({ tickets }) {
 
   /* avalaibility: todo */
   const available = true;
 
+  // const test = getTicket("api/tickets/1")
+    // console.log(test)
+
   return (
       <>
-      {tickets.map((ticket, index) => (
+      {tickets['hydra:member']?.map((ticket,index) => (
+
         <div  key= {index} className="ticket tickets-future">
         <div className="ticket-content">
 
@@ -30,8 +35,9 @@ export default function Ticket({ tickets }) {
                     <p>{ticket.price}€</p>
                 </div>
                 <div className="content__bottom-right">
-                    <p>{ticket.date}</p>
                     <p>{ticket.type}</p>
+                </div>
+                <div className="ticket-content__top">
                 </div>
             </div>
         </div>
@@ -41,11 +47,12 @@ export default function Ticket({ tickets }) {
   );
 }
 
+
+
 Ticket.propTypes = {
-    tickets: PropTypes.arrayOf(PropTypes.shape({
-   //  id: PropTypes.number.isRequired, Temporaire
-    type: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired
-    })).isRequired,
+    tickets: PropTypes.object.isRequired,
+};
+
+Ticket.defaultProps = {
+    tickets: {}
 };
