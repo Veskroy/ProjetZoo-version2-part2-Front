@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  react :
+    image: ${REACT_IMAGE:?error}:${APP_VERSION:?error}
+    restart: always
+    ports:
+      [ "8000:80" ]
