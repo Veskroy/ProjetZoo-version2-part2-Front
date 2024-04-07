@@ -180,6 +180,6 @@ export async function getTickets(id) {
 }
 
 export async function getTicket(id) {
-    return fetch(`${API_URL}/api/tickets?id=${id}`)
+    return fetch(`${API_URL}/tickets?id=${id}`)
         .then((res) => res.json());
 }
