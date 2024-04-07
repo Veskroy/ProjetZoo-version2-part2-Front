@@ -1,26 +1,33 @@
-ARG NODE_VERSION=19-alpine3.16
-ARG NGINX_VERSION=1.23.3-alpine
 
-FROM node:${NODE_VERSION} as wildwonderhub_dev
-WORKDIR /usr/src/app
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-COPY vite.config.js vite.config.js
+FROM alpine:3.12
+
+ENV NODE_VERSION=21.7.1
+# Dockerfile : phase de développement
+FROM node:${NODE_VERSION}alpine as react_development
+WORKDIR /usr/src/project
+
+COPY package.json .
+COPY package-lock.json .
 
 RUN set -eux; \
-    npm install
-COPY . ./
-VOLUME node_modules
-EXPOSE 5173
-CMD "npm" "start"
+npm install;
 
-FROM wildwonderhub_dev AS wildwonderhub_build
-ARG REACT_APP_API_ENTRYPOINT
-RUN set -eux;  \
-        npm run build
+COPY . .
+ENTRYPOINT ["/usr/src/admin/node_modules"]
+CMD ["npm start"]
 
-FROM nginx:${NGINX_VERSION} AS wildwonderhub_nginx
-RUN chmod -x /etc/nginx/conf.d/default.conf
-COPY docker/nginx/conf.d/default.conf /etc/nginx/conf.d/
-WORKDIR /usr/src/app
-COPY --from=wildwonderhub_build /usr/src/app ./
+# Dockerfile : phase de construction de l'application
+FROM react_development as react_build
+RUN set -eux; \
+    npm run build --OutDir ;
+
+#Dockerfile : phase du serveur web Nginx
+ENV NGINX_VERSION=1.32.0
+
+FROM  nginx:${NGINX_VERSION}alpine as react_nginx
+
+COPY docker/nginx/conf.d/default.conf /etc/nginx/
+
+WORKDIR /usr/src/admin/build
+
+COPY --from=react_build /usr/src/project .
