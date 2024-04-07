@@ -1,16 +1,23 @@
 import Ticket from "../../components/commons/Ticket.jsx";
+import {getUser} from "../../services/api/WildWonderHub.js";
+import {useAccount, useCurrentUser, useCurrentUserId, useUserToString} from "../../hooks/getAccount.js";
 
 export default function Ticket_view() {
-    const ticket=[
-        {price: 5,type:"Junior", date:"Lundi"},
-        {price: 6,type: "Senior", date:"Lundi"}
-    ]
-    /* donné temporaire pur test*/
+    // permet d'optenir tout les infor lie a l'user
+    const user = useCurrentUser();
+
+    // permet d'obtenir le non de l'utilisateur
+    const userTostring= useUserToString()
+
+    // permet d'obtenir lid de L'user
+    const { userContext, isLoggedIn, errorLogin } = useAccount();
+    const userId = useCurrentUserId(userContext);
+
     return (
         <>
         <h1 className="main-title green mt-50 mb-100">Liste de vos tickets achetés</h1>
         <div className="tickets-infos">
-        <h3>Bonjour!</h3>
+        <h3>Bonjour {userTostring}!</h3>
         <p className="tickets-infos__text mt-50">
             Vous pouvez consulter ici vos tickets prévus prochainement et votre historique.
             <br/>
@@ -27,9 +34,9 @@ export default function Ticket_view() {
             famille ou entre amis.
         </p>
         </div>
-            <div class="tickets-container">
-                <div class="tickets-past mt-50">
-                    <Ticket tickets={ticket}></Ticket>
+            <div className="tickets-container">
+                <div className="tickets-past mt-50">
+                    <Ticket tickets={user.tickets}/>
                 </div>
             </div>
             <div className="form-ticket-add" id="réserver">

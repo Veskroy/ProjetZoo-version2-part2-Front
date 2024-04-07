@@ -48,6 +48,7 @@ export function useUserToString() {
 // récupère l'utilisateur courant
 export function useCurrentUser() {
     const userContext = useContext(UserContext);
+    // console.log(userContext.user);
     return userContext.user;
 }
 
