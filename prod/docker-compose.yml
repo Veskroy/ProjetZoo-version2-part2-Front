@@ -4,4 +4,4 @@ services:
     image: ${REACT_IMAGE:?error}:${APP_VERSION:?error}
     restart: always
     ports:
-      [ "8085:80" ]
+      [ "8000:80" ]
