@@ -1,3 +1,4 @@
+import {useEffect, useRef, useState} from "react";
 import { Link } from "wouter";
 import { useAccount, useRolesUser, useUserToString } from "../hooks/getAccount";
 import { adminUrl } from "../services/api/WildWonderHub";
@@ -7,11 +8,47 @@ import Video from "../components/commons/Video";
 import videoSinge from '../videos/singe.mp4';
 import videoPingouins from '../videos/pingouins.mp4';
 
+import leftArrow from "../../public/assets/images/icons/left-arrow_icon.svg";
+import rightArrow from "../../public/assets/images/icons/right-arrow_icon.svg";
+
+import pandaRoux from "../../public/assets/images/img-animaux/panda-roux.png";
+import zebresGirafes from "../../public/assets/images/img-animaux/zebres-girafes.png";
+import zoo from "../../public/assets/images/img-animaux/zoo.png";
+
+const images = [
+    pandaRoux,
+    zebresGirafes,
+    zoo
+];
+
 function Home() {
     const { userContext, isLoggedIn } = useAccount();
     const userToString = useUserToString();
     const { isAdmin } = useRolesUser();
-    //console.log('user from home: ', userContext, isLoggedIn);
+
+    const [index, setIndex] = useState(0);
+    const totalItems = images.length;
+
+    useEffect(() => {
+        const slideInterval = setInterval(() => {
+            setIndex(prevIndex => (prevIndex === totalItems - 1 ? 0 : prevIndex + 1));
+        }, 4000);
+
+        return () => clearInterval(slideInterval);
+    }, [totalItems]);
+
+    const handleCarousel = (newIndex) => {
+        setIndex(newIndex);
+    };
+
+    const updateButtonsVisibility = () => {
+        return {
+            displayPrev: index === 0 ? 'none' : 'block',
+            displayNext: index === totalItems - 1 ? 'none' : 'block'
+        };
+    };
+
+    const { displayPrev, displayNext } = updateButtonsVisibility();
 
     return (
         <div className="presentation-base">
@@ -20,24 +57,42 @@ function Home() {
                 Bienvenue sur le site du Zoo de la Palmyre !
             </h1>
 
-            {/* Carousel à implémenter */}
+            <div className="carousel">
+                <div className="carousel-content__nav">
+                    <img onClick={() => handleCarousel(index - 1)} src={leftArrow} style={{display: displayPrev}}
+                         className="icon-arrows arrow-left" alt="arrow icon"/>
+                    <img onClick={() => handleCarousel(index + 1)} src={rightArrow} style={{display: displayNext}}
+                         className="icon-arrows arrow-right" alt="arrow icon"/>
+                </div>
+                <div className="carousel-content">
+                    {images.map((image, i) => (
+                        <div key={i} className="carousel-content__item" style={{ transform: `translateX(${-index * 100}%)` }}>
+                            <img src={image} alt="img animal"/>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
             <div className="presentation-content">
                 <h3 className="presentation__title">Qu’est-ce-que le Zoo de la Palmyre ?</h3>
 
                 <div className="presentation-infos mt-50">
                     <p className="presentation-infos__text">
-                        Le Zoo de La Palmyre, situé sur la côte ouest de la France, est l'un des plus grands et des plus renommés
-                        zoos d'Europe. Fondé en 1966, ce parc zoologique s'étend sur près de 18 hectares au cœur d'une magnifique
-                        pinède. Il abrite une incroyable diversité d'animaux provenant des quatre coins du globe, offrant ainsi une
-                        expérience immersive et éducative aux visiteurs de tous âges. Avec plus de 1 600 animaux appartenant à plus
-                        de 115 espèces différentes (<Link className="link" href="/">que vous pouvez retrouver ici</Link>), le zoo s'engage activement dans la conservation et la préservation des espèces
+                        Le Zoo de La Palmyre, situé sur la côte ouest de la France, est l'un des plus grands et des plus
+                        renommés
+                        zoos d'Europe. Fondé en 1966, ce parc zoologique s'étend sur près de 18 hectares au cœur d'une
+                        magnifique
+                        pinède. Il abrite une incroyable diversité d'animaux provenant des quatre coins du globe,
+                        offrant ainsi une
+                        expérience immersive et éducative aux visiteurs de tous âges. Avec plus de 1 600 animaux
+                        appartenant à plus
+                        de 115 espèces différentes (<Link className="link" to="/animals">que vous pouvez retrouver ici</Link>), le zoo s'engage activement dans la conservation et la préservation des espèces
                         menacées, tout en offrant des habitats spacieux et naturels pour le bien-être de ses résidents. En plus des
                         fascinantes rencontres animalières, les visiteurs peuvent également profiter de spectacles éducatifs,
                         d'aires de jeux et d'espaces de restauration au sein de ce véritable havre de biodiversité.
                         <br />
                         <br />
-                        Pour toutes questions, n’hésitez pas à consulter notre <Link className="link" href="/">forum</Link> ou <Link className="link" href="/">nous contacter</Link> à notre adresse mail !
+                        Pour toutes questions, n’hésitez pas à consulter notre <Link className="link" href="/forum">forum</Link> ou <Link className="link" href="/contact">nous contacter</Link> à notre adresse mail !
                     </p>
                     <img src="assets/images/img-animaux/suricates.png" alt="img animal" />
                 </div>
@@ -93,7 +148,7 @@ function Home() {
                         </>
                     )}
                     {isAdmin && (
-                        <Link className="btn button-admin" href={adminUrl}>Accès administratif</Link>
+                        <a className="btn button-admin" href={adminUrl()}>Accès administratif</a>
                     )}
                 </div>
                 
