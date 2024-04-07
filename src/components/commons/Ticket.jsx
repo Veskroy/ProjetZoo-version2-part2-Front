@@ -1,56 +1,51 @@
 import PropTypes from 'prop-types';
 import Dropdown from './Dropdown';
+// import {getTicket} from "../../services/api/WildWonderHub.js";
 
-export default function Ticket({ id, type, price, date }) {
+export default function Ticket({ tickets }) {
+
   /* avalaibility: todo */
   const available = true;
+
+  // const test = getTicket("api/tickets/1")
+    // console.log(test)
+
   return (
-    <div className="ticket planned-ticket">
+      <>
+      {tickets['hydra:member']?.map((ticket,index) => (
+
+        <div  key= {index} className="ticket tickets-future">
         <div className="ticket-content">
+
             <div className="ticket-content__top">
                 <p>{/*Passé, aujourd'hui, demain ou bientôt*/}</p>
-                {available ? (
-                    <Dropdown actions={[
-                        {
-                            label: 'Récapitulatif',
-                            href: {/* todo */}
-                        }
-                    ]} />
-                )
-                :
-                (
-                    <Dropdown actions={[
-                        {
-                            label: 'Récapitulatif',
-                            href: {/* todo */}
-                        },
-                        {
-                            label: 'Modifier',
-                            href: {/* todo */}
-                        }
-                    ]} />
-                )}
             </div>
             <div className="ticket-content__middle">
-                <img src="{{ asset('images/Sae_Zoo_Image/LogoSAE_Zoo.png') }}" alt="logo" className="logo" />
+                <img src="../../../public/assets/images/logos/LogoSAE_Zoo.png" alt="logo" className="logo" />
             </div>
             <div className="ticket-content__bottom">
                 <div className="content__bottom-left">
-                    <p>{price}€</p>
+                    <p>{ ticket.price !== null ? ticket.price : 0}€</p>
                 </div>
                 <div className="content__bottom-right">
-                    <p>{date}</p>
-                    <p>{type}</p>
+                    <p>{ticket.type}</p>
+                </div>
+                <div className="ticket-content__top">
                 </div>
             </div>
         </div>
     </div>
-  )
+    ))}
+    </>
+  );
 }
 
+
+
 Ticket.propTypes = {
-    id: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired
+    tickets: PropTypes.object.isRequired,
+};
+
+Ticket.defaultProps = {
+    tickets: {}
 };

@@ -36,7 +36,7 @@ export default function Header() {
 
                     {(isLoggedIn && userContext && !errorLogin) ? (
                         <>
-                            <Link to={() => {}} className="btn button-secondary">Réserver</Link>
+                            <Link to={"/ticket"} className="btn button-secondary">Ticket</Link>
                             <a href={logoutUrl()} className="btn button-primary">Se déconnecter</a>
                             {isAdmin && (
                                 <a href={adminUrl()} className="btn button-admin">Admin</a>
