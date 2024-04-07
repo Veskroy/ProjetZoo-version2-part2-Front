@@ -1,17 +1,27 @@
 import Ticket from "../../components/commons/Ticket.jsx";
-import {getUser} from "../../services/api/WildWonderHub.js";
+import {getTickets, getUser} from "../../services/api/WildWonderHub.js";
 import {useAccount, useCurrentUser, useCurrentUserId, useUserToString} from "../../hooks/getAccount.js";
+import {useEffect,useState} from "react";
 
 export default function Ticket_view() {
+    const [tickets, setTickets] = useState({});
+
+    // Permet d'obtenir L'id de L'utilisateur
+    const { userContext, isLoggedIn, errorLogin } = useAccount();
+    const userId = useCurrentUserId(userContext);
+
+    useEffect(() => {
+        getTickets(userId).then((value) =>{ setTickets(value);})
+        },[userId]);
+
+    console.log(tickets)
+
     // permet d'optenir tout les infor lie a l'user
-    const user = useCurrentUser();
+    // const user = useCurrentUser();
 
     // permet d'obtenir le non de l'utilisateur
     const userTostring= useUserToString()
 
-    // permet d'obtenir lid de L'user
-    const { userContext, isLoggedIn, errorLogin } = useAccount();
-    const userId = useCurrentUserId(userContext);
 
     return (
         <>
@@ -36,7 +46,7 @@ export default function Ticket_view() {
         </div>
             <div className="tickets-container">
                 <div className="tickets-past mt-50">
-                    <Ticket tickets={user.tickets}/>
+                    <Ticket tickets={tickets}/>
                 </div>
             </div>
             <div className="form-ticket-add" id="réserver">
