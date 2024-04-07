@@ -3,7 +3,7 @@
 /* WildWonderHub */
 /*****************/
 
-export const BASE_URL = 'http://127.0.0.1:8000';
+export const BASE_URL = 'http://10.31.33.191:8085';
 export const API_URL = `${BASE_URL}/api`;
 
 /* premier test : fonction pour récupérer l'utilisateur connecté */
