@@ -15,10 +15,15 @@ Le sujet sur lequel s'appuyer pour la réalisation de cette SAE se trouve [ici](
 ## Table des matières
 
 <!-- TOC -->
-  * [Auteurs du projet](#auteurs-du-projet)
-  * [Outils utilisés](#outils-utilisés)
-  * [Guide d'installation](#guide-dinstallation)
-  * [Gestion des branches et commits](#gestion-des-branches-et-commits)
+- [Auteurs du projet](#auteurs-du-projet)
+- [Outils utilisés](#outils-utilisés)
+- [Guide d'installation](#guide-dinstallation)
+  - [Clonage du Projet](#clonage-du-projet)
+  - [Installation des Dépendances](#installation-des-dépendances)
+  - [Démarrage du Projet](#démarrage-du-projet)
+- [Gestion des Branches et des Commits](#gestion-des-branches-et-des-commits)
+- [Installation avec Docker](#installation-avec-docker)
+- [VM de Réact](#vm-de-réact)
 <!-- TOC -->
 
 ---
@@ -44,75 +49,86 @@ Le sujet sur lequel s'appuyer pour la réalisation de cette SAE se trouve [ici](
 
 ### Guide d'installation
 
-1- Clônage du projet
+4- Démarrer le projet
+```shell
+npm run dev
+```
+---
+
+## Guide d'installation
+
+### Clonage du Projet
 ```shell
 git clone https://iut-info.univ-reims.fr/gitlab/perr0112/sae4-01-front.git
-```
-
-2- Se placer dans le projet
-```shell
 cd sae4-01-front
 ```
 
-3- Installer toutes les dépendances
+### Installation des dépendances
 ```shell
 npm install
 ```
 
-4- Démarrer le projet
+### Démarrage du projet
 ```shell
 npm run dev
 ```
 
 ---
 
-### Gestion des branches et commits
+## Gestion des branches et des commits
 
-#### Apporter une modification au dépôt git
-- Créer une branche contenant le nom de la fonctionnalité traitée
-
-```shell
-git branch <nom>
-```
-
-- Se positionner sur cette branche
+### Création d'une nouvelle branche
 
 ```shell
-git checkout <nom>
+git checkout -b <nom_de_branche>
 ```
 
-- Retourner sur la branche main une fois le code écrit
+### Passage à la branche principale
 
 ```shell
 git checkout main
 git pull
 ```
 
-- Retourner sur sa branche locale
+### Rebase et push des modifications
 ```shell
-git checkout <nom>
+git checkout <nom_de_branche>
 git rebase main
+git push origin <nom_de_branche>
 ```
 
 - Push le code écrit
 - Demande de merge request sur le repo gitlab (en décrivant les ajouts/modifications apportés au projet)
 
-#### Exemple de commit
+### Exemple de commit
 
-* ajout d’une fonctionnalité
+* Ajout d’une fonctionnalité
 
 ```shell
 git commit -m "add: <fonctionnalité ajoutée>"
 ```
-* modification d’une fonctionnalité déjà présente
+* Modification d’une fonctionnalité déjà présente
 ```shell
 git commit -m "edit: <fonctionnalité modifiée>"
 ```
-* suppression d’un fichier
+* Suppression d’un fichier
 ```shell
 git commit -m "delete: <fonctionnalité supprimée>"
 ```
-* modification d'un composant
+* Modification d'un composant
 ```shell
 git commit -m "edit(<component>): <fonctionnalité modifiée sur le dit component>"
 ```
+---
+
+### Installation avec docker
+
+- Pour le lancer avec le docker compose :
+```sh
+docker-compose up
+```
+---
+## VM de réact
+
+Accédez à l'API sur une machine virtuelle utilisant des conteneurs Docker :
+http://10.31.33.191:8000
